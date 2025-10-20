@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kinetica - Iniciar Sesión</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Register.css') }}">
+</head>
+<body>
+
+    <!-- Esta parte se la ando editando por Flashes (avisos) NO EDITAR o abra manoseo -->
+    <!-- Mostrar flashes -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flashes">
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+
+    <!-- Fondo -->
+    <div class="background"></div>
+
+    <!-- Contenedor principal -->
+    <div class="container">
+        <div class="card">
+            <h1 class="title">Kinetica</h1>
+
+            <form method="POST" action="{{ url_for('usuarios.login') }}">
+                <label for="usuario">Usuario</label>
+                <input type="text" id="usuario" name="usuario" placeholder="Ingresa tu usuario" required>
+
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" name="password" placeholder="********" required>
+
+                <button type="submit">Iniciar Sesión</button>
+
+                <!-- Enlace opcional -->
+                <p style="text-align:center; margin-top:10px;">
+                    ¿No tienes cuenta? <a href="{{ url_for('usuarios.registro') }}" style="color:#ffffff; font-weight:bold;">Regístrate</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/Login.js') }}"></script>
+</body>
+</html>

@@ -1,21 +1,28 @@
 from flask import Flask 
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+from dotenv import load_dotenv
+
+
 
 import urllib
 import os
-from dotenv import load_dotenv
 
-#Cargar las variables del .env
-load_dotenv()
 
 # Inicializamos la base de datos (sin app todavía)
 db = SQLAlchemy()
-
+# y las migraciones 
+migrate = Migrate()
 
 def create_app():
     #Crearemos la app Flask 
     app = Flask(__name__)
+    app.secret_key = 'supersecreto'
 
+    #Cargar las variables del .env
+    load_dotenv()
+    
+    
     #Aqui crearemos la conexion usando la autenticacion de Windows 
     #Armamos una cadena de conexion llamada (connection string)
     params = urllib.parse.quote_plus( #urllib.parse.quote_plus --> sirve para codificar correctamente la cadena y evita errores con caracteres especiales cuando se pase al conector pyodbc
@@ -37,10 +44,14 @@ def create_app():
 
     #Inicializamos SQLAlchemy con Flask
     db.init_app(app)
+    #Y la extension de la migracion 
+    migrate.init_app(app, db)
 
     #Importamos y registraremos las rutas 
     from app.routes.main_routes import main 
-    app.register_blueprint(main)
+    from app.routes.usuarios_routes import usuarios
 
+    app.register_blueprint(main)
+    app.register_blueprint(usuarios)
 
     return app

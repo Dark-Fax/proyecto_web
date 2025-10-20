@@ -1,3 +1,4 @@
+#Esta sera la ruta prinicpal de la pagina 'Home'
 from flask import Blueprint
 
 main = Blueprint('main', __name__)

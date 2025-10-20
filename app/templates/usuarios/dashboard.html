@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kinetica - Dashboard</title>
+  <link rel="icon" href="../../static/img/Logo.png.jpg" type="image/x-icon">
+  <link rel="stylesheet" href="../../static/css/Dashboard.css">
+</head>
+<body>
+
+  <!-- Barra lateral -->
+  <aside class="sidebar">
+    <div class="logo">
+      <img src="../../static/img/Logo.png.jpg" alt="Kinetica Logo">
+      <h2>Kinetica</h2>
+    </div>
+    <nav>
+      <ul id="menu">
+        <li class="active" data-section="noticias"><i class="icon">📰</i><a href="#">Noticias</a></li>
+        <li data-section="vehiculos"><i class="icon">🚗</i><a href="#">Vehículos</a></li>
+        <li data-section="calculadora"><i class="icon">🧮</i><a href="#">Calculadora</a></li>
+        <li data-section="mapa"><i class="icon">🗺️</i><a href="#">Mapa</a></li>
+        <li data-section="cuenta"><i class="icon">👤</i><a href="#">Cuenta</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Contenedor principal -->
+  <main class="content">
+
+    <!-- Encabezado -->
+    <header class="header">
+      <h2>Bienvenido, <span id="nombreUsuario">Usuario</span> 👋</h2>
+      <button class="logout-btn" id="logoutBtn">Cerrar sesión</button>
+    </header>
+
+    <!-- Sección principal -->
+    <section class="main-section" id="noticias">
+      <div class="featured-news">
+        <h1>Noticia del día</h1>
+        <p>@Autor • Innovaciones del sector automotriz</p>
+        <button class="btn-primario">Leer noticia</button>
+      </div>
+
+      <!-- Filtros -->
+      <div class="filters">
+        <button id="btnSinVer" class="activo">Sin ver</button>
+        <button id="btnVistas">Vistas</button>
+      </div>
+
+      <!-- Lista de noticias -->
+      <div class="news-list" id="newsList">
+        <!-- Noticias generadas por JS -->
+      </div>
+    </section>
+
+    <!-- Otras secciones (inicialmente ocultas) -->
+    <section id="vehiculos" class="main-section" style="display:none;">
+      <h2>Vehículos disponibles</h2>
+      <p>Próximamente podrás explorar los modelos más recientes.</p>
+    </section>
+
+    <section id="calculadora" class="main-section" style="display:none;">
+      <h2>Calculadora de consumo</h2>
+      <p>Calcula la eficiencia de tu vehículo.</p>
+    </section>
+
+    <section id="mapa" class="main-section" style="display:none;">
+      <h2>Mapa de estaciones</h2>
+      <p>Encuentra los puntos de carga más cercanos.</p>
+    </section>
+
+    <section id="cuenta" class="main-section" style="display:none;">
+      <h2>Configuración de cuenta</h2>
+      <p>Administra tu perfil y preferencias.</p>
+    </section>
+
+  </main>
+
+  <script src="../../static/js/Dashboard.js"></script>
+</body>
+</html>
