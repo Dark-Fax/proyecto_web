@@ -1,9 +1,10 @@
-// === Simulación de usuario (puedes cambiarlo por una sesión real) ===
 document.addEventListener("DOMContentLoaded", () => {
-  const nombreUsuario = localStorage.getItem("usuario") || "Diego Cuervo";
-  document.getElementById("nombreUsuario").textContent = nombreUsuario;
+  // === Nombre del usuario ===
+  const nombreUsuario = document.getElementById("nombreUsuario");
+  // No podemos usar {{ usuario_nombre }} aquí directamente en JS externo
+  // Mejor pasarlo desde HTML usando Jinja en un data-attribute o directamente en el span
 
-  // Noticias de ejemplo
+  // === Noticias de ejemplo ===
   const noticias = [
     { id: 1, titulo: "Futuro eléctrico", categoria: "Autos", vistas: 1200, texto: "Un vistazo al futuro de los vehículos eléctricos y autónomos.", vista: false },
     { id: 2, titulo: "Baterías de hidrógeno", categoria: "Energía", vistas: 980, texto: "Las nuevas baterías prometen revolucionar el mercado.", vista: false },
@@ -14,13 +15,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnSinVer = document.getElementById("btnSinVer");
   const btnVistas = document.getElementById("btnVistas");
   const logoutBtn = document.getElementById("logoutBtn");
+  const logoutUrl = logoutBtn.dataset.logoutUrl; // URL pasada desde HTML
 
   // === Renderizar noticias ===
   function renderNoticias(filtro = "sinver") {
     listaNoticias.innerHTML = "";
-    const filtradas = filtro === "sinver"
-      ? noticias.filter(n => !n.vista)
-      : noticias.filter(n => n.vista);
+    const filtradas = filtro === "sinver" ? noticias.filter(n => !n.vista) : noticias.filter(n => n.vista);
 
     if (filtradas.length === 0) {
       listaNoticias.innerHTML = "<p>No hay noticias en esta categoría.</p>";
@@ -43,7 +43,6 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
       `;
 
-      // Al dar clic en el corazón, marcar como vista/no vista
       card.querySelector(".like").addEventListener("click", () => {
         n.vista = !n.vista;
         renderNoticias(filtro);
@@ -55,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   renderNoticias();
 
-  // === Filtros ===
+  // === Filtros de noticias ===
   btnSinVer.addEventListener("click", () => {
     btnSinVer.classList.add("activo");
     btnVistas.classList.remove("activo");
@@ -66,13 +65,6 @@ document.addEventListener("DOMContentLoaded", () => {
     btnVistas.classList.add("activo");
     btnSinVer.classList.remove("activo");
     renderNoticias("vistas");
-  });
-
-  // === Cerrar sesión ===
-  logoutBtn.addEventListener("click", () => {
-    localStorage.removeItem("usuario");
-    alert("Sesión cerrada correctamente.");
-    window.location.href = "/login.html"; // Cambia por tu ruta real
   });
 
   // === Menú lateral ===
@@ -89,5 +81,10 @@ document.addEventListener("DOMContentLoaded", () => {
         sec.style.display = sec.id === target ? "block" : "none";
       });
     });
+  });
+
+  // === Logout ===
+  logoutBtn.addEventListener("click", () => {
+    window.location.href = logoutUrl;
   });
 });

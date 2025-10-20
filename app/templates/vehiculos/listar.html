@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kinetica - Vehículos</title>
+  <link rel="icon" href="../../static/img/Logo.png" type="image/x-icon" />
+  <link rel="stylesheet" href="/static/css/Dashboard.css" />
+</head>
+<body>
+
+  <!-- Barra lateral -->
+  <aside class="sidebar">
+    <div class="logo">
+      <img src="../../static/img/Logo.png" alt="Kinetica Logo">
+    </div>
+    <nav>
+      <ul>
+        <li><i class="icon">📰</i><a href="../../templates/usuarios/dashboard.html">Noticias</a></li>
+        <li class="active"><i class="icon">🚗</i><a href="#">Vehículos</a></li>
+        <li><i class="icon">🧮</i><a href="#">Calculadora</a></li>
+        <li><i class="icon">🗺️</i><a href="#">Mapa</a></li>
+        <li><i class="icon">👤</i><a href="#">Cuenta</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Contenedor principal -->
+  <main class="content">
+
+    <!-- Encabezado -->
+    <header class="header">
+      <h2>Bienvenido, <span id="nombreUsuario">Usuario</span> 👋</h2>
+      <button class="logout-btn">Cerrar sesión</button>
+    </header>
+
+    <!-- Sección principal -->
+    <section class="main-section">
+
+      <!-- Vehículo destacado (usa la clase featured-news para mantener estilos) -->
+      <div class="featured-news">
+        <h1>Vehículo destacado</h1>
+        <p>Marca: <strong>Toyota</strong> • Modelo: <strong>Corolla Cross</strong></p>
+        <p>Año: 2023 • Kilometraje: 12,345 km</p>
+        <p style="opacity:0.95; margin-top:8px;">Precio: <strong>$45.000.000</strong></p>
+        <button class="btn-primario" style="margin-top:12px;">Ver detalles</button>
+      </div>
+
+      <!-- Filtros -->
+      <div class="filters">
+        <button class="activo">Disponibles</button>
+        <button>Vendidos</button>
+        <button>Por marca</button>
+        <button>Por precio</button>
+      </div>
+
+      <!-- Lista de vehículos (se reutiliza la estructura .news-list / .news-card) -->
+      <div class="news-list">
+        <div class="news-card">
+          <div class="news-info">
+            <h3>Toyota Corolla Cross</h3>
+            <p>Categoría: SUV • 2023 • 12,345 km</p>
+            <p>Precio: $45.000.000 • Transmisión: Automática</p>
+          </div>
+          <div class="news-actions">⭐️⭐️⭐️⭐️☆ 🤍</div>
+        </div>
+
+        <div class="news-card">
+          <div class="news-info">
+            <h3>Chevrolet Spark</h3>
+            <p>Categoría: Compacto • 2019 • 48,200 km</p>
+            <p>Precio: $22.500.000 • Transmisión: Manual</p>
+          </div>
+          <div class="news-actions">⭐️⭐️⭐️☆☆ 🤍</div>
+        </div>
+
+        <div class="news-card">
+          <div class="news-info">
+            <h3>BMW Serie 3</h3>
+            <p>Categoría: Sedán • 2021 • 28,900 km</p>
+            <p>Precio: $120.000.000 • Transmisión: Automática</p>
+          </div>
+          <div class="news-actions">⭐️⭐️⭐️⭐️⭐️ 🤍</div>
+        </div>
+
+        <!-- ejemplo con mini-imagen (si quieres usar imágenes reales, reemplaza el src) -->
+        <div class="news-card">
+          <div class="news-info" style="display:flex; gap:12px; align-items:center;">
+            <img src="../../static/img/vehicle-placeholder.png" alt="vehículo" style="width:84px; height:54px; object-fit:cover; border-radius:8px;">
+            <div>
+              <h3>Ford Ranger</h3>
+              <p>Categoría: Camioneta • 2022 • 8,000 km</p>
+              <p>Precio: $98.000.000 • Tracción 4x4</p>
+            </div>
+          </div>
+          <div class="news-actions">⭐️⭐️⭐️⭐️☆ 🤍</div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Script: reemplaza o reutiliza tu dashboard.js con lógica de vehículos -->
+  <script src="../static/js/vehicles.js"></script>
+</body>
+</html>

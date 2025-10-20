@@ -4,21 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kinetica - Dashboard</title>
-  <link rel="icon" href="../../static/img/Logo.png.jpg" type="image/x-icon">
-  <link rel="stylesheet" href="../../static/css/Dashboard.css">
+  <link rel="icon" href="{{ url_for('static', filename='img/Logo.png.jpg') }}" type="image/x-icon">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/Dashboard.css') }}">
 </head>
 <body>
 
   <!-- Barra lateral -->
   <aside class="sidebar">
     <div class="logo">
-      <img src="../../static/img/Logo.png.jpg" alt="Kinetica Logo">
+      <img src="{{ url_for('static', filename='img/Logo.png.jpg') }}" alt="Kinetica Logo">
       <h2>Kinetica</h2>
     </div>
     <nav>
       <ul id="menu">
         <li class="active" data-section="noticias"><i class="icon">📰</i><a href="#">Noticias</a></li>
-        <li data-section="vehiculos"><i class="icon">🚗</i><a href="#">Vehículos</a></li>
+        <li data-section="vehiculos"><i class="icon">🚗</i><a href="/templates/vehiculos/listar.html">Vehículos</a></li>
         <li data-section="calculadora"><i class="icon">🧮</i><a href="#">Calculadora</a></li>
         <li data-section="mapa"><i class="icon">🗺️</i><a href="#">Mapa</a></li>
         <li data-section="cuenta"><i class="icon">👤</i><a href="#">Cuenta</a></li>
@@ -31,8 +31,8 @@
 
     <!-- Encabezado -->
     <header class="header">
-      <h2>Bienvenido, <span id="nombreUsuario">Usuario</span> 👋</h2>
-      <button class="logout-btn" id="logoutBtn">Cerrar sesión</button>
+      <h2>Bienvenido, <span id="nombreUsuario">{{ usuario_nombre }}</span> 👋</h2>
+      <button class="logout-btn" id="logoutBtn" data-logout-url="{{ url_for('usuarios.logout') }}" >Cerrar sesión</button>
     </header>
 
     <!-- Sección principal -->
@@ -50,12 +50,10 @@
       </div>
 
       <!-- Lista de noticias -->
-      <div class="news-list" id="newsList">
-        <!-- Noticias generadas por JS -->
-      </div>
+      <div class="news-list" id="newsList"></div>
     </section>
 
-    <!-- Otras secciones (inicialmente ocultas) -->
+    <!-- Otras secciones (ocultas) -->
     <section id="vehiculos" class="main-section" style="display:none;">
       <h2>Vehículos disponibles</h2>
       <p>Próximamente podrás explorar los modelos más recientes.</p>
@@ -78,6 +76,6 @@
 
   </main>
 
-  <script src="../../static/js/Dashboard.js"></script>
+  <script src="{{ url_for('static', filename='js/Dashboard.js') }}"></script>
 </body>
 </html>

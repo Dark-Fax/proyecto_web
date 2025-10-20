@@ -65,7 +65,7 @@ def login():
             session['usuario_id'] = usuario.id
             session['usuario_nombre'] = usuario.nombre
             flash(f'Bienvenido {usuario.nombre}!', 'success')
-            return redirect(url_for('main.home')) #Redirige al home o Dashboard
+            return redirect(url_for('main.dashboard')) #Redirige al Dashboard
         else:
             flash('Correo o contraseña incorrectos', 'danger')
             return redirect(url_for('usuarios.login'))
