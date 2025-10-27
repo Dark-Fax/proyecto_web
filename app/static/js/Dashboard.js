@@ -1,8 +1,16 @@
+// 📰 Dashboard.js — lógica específica del panel principal
 document.addEventListener("DOMContentLoaded", () => {
-  // === Nombre del usuario ===
+  console.log("✅ Dashboard.js cargado correctamente");
+
+  // === Guardar usuario al cargar dashboard ===
   const nombreUsuario = document.getElementById("nombreUsuario");
-  // No podemos usar {{ usuario_nombre }} aquí directamente en JS externo
-  // Mejor pasarlo desde HTML usando Jinja en un data-attribute o directamente en el span
+  if (nombreUsuario) {
+    const nombre = nombreUsuario.textContent.trim();
+    if (nombre) {
+      sessionStorage.setItem("usuario_nombre", nombre);
+      console.log("👤 Usuario guardado:", nombre);
+    }
+  }
 
   // === Noticias de ejemplo ===
   const noticias = [
@@ -14,11 +22,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const listaNoticias = document.getElementById("newsList");
   const btnSinVer = document.getElementById("btnSinVer");
   const btnVistas = document.getElementById("btnVistas");
-  const logoutBtn = document.getElementById("logoutBtn");
-  const logoutUrl = logoutBtn.dataset.logoutUrl; // URL pasada desde HTML
 
   // === Renderizar noticias ===
   function renderNoticias(filtro = "sinver") {
+    if (!listaNoticias) return;
     listaNoticias.innerHTML = "";
     const filtradas = filtro === "sinver" ? noticias.filter(n => !n.vista) : noticias.filter(n => n.vista);
 
@@ -30,7 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
     filtradas.forEach(n => {
       const card = document.createElement("div");
       card.classList.add("news-card");
-
       card.innerHTML = `
         <div class="news-info">
           <h3>${n.titulo}</h3>
@@ -42,12 +48,10 @@ document.addEventListener("DOMContentLoaded", () => {
           <span class="like" style="cursor:pointer;">${n.vista ? "❤️" : "🤍"}</span>
         </div>
       `;
-
       card.querySelector(".like").addEventListener("click", () => {
         n.vista = !n.vista;
         renderNoticias(filtro);
       });
-
       listaNoticias.appendChild(card);
     });
   }
@@ -55,20 +59,22 @@ document.addEventListener("DOMContentLoaded", () => {
   renderNoticias();
 
   // === Filtros de noticias ===
-  btnSinVer.addEventListener("click", () => {
-    btnSinVer.classList.add("activo");
-    btnVistas.classList.remove("activo");
-    renderNoticias("sinver");
-  });
+  if (btnSinVer && btnVistas) {
+    btnSinVer.addEventListener("click", () => {
+      btnSinVer.classList.add("activo");
+      btnVistas.classList.remove("activo");
+      renderNoticias("sinver");
+    });
 
-  btnVistas.addEventListener("click", () => {
-    btnVistas.classList.add("activo");
-    btnSinVer.classList.remove("activo");
-    renderNoticias("vistas");
-  });
+    btnVistas.addEventListener("click", () => {
+      btnVistas.classList.add("activo");
+      btnSinVer.classList.remove("activo");
+      renderNoticias("vistas");
+    });
+  }
 
   // === Menú lateral ===
-  const menuItems = document.querySelectorAll("#menu li");
+  const menuItems = document.querySelectorAll("#menu li[data-section]");
   const secciones = document.querySelectorAll(".main-section");
 
   menuItems.forEach(item => {
@@ -77,14 +83,11 @@ document.addEventListener("DOMContentLoaded", () => {
       item.classList.add("active");
 
       const target = item.getAttribute("data-section");
+      if (!target) return; // Si el item tiene href Flask, lo dejamos pasar
+
       secciones.forEach(sec => {
         sec.style.display = sec.id === target ? "block" : "none";
       });
     });
-  });
-
-  // === Logout ===
-  logoutBtn.addEventListener("click", () => {
-    window.location.href = logoutUrl;
   });
 });

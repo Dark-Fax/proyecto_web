@@ -3,47 +3,61 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kinetica - Vehículos</title>
-  <link rel="icon" href="../../static/img/Logo.png" type="image/x-icon" />
-  <link rel="stylesheet" href="/static/css/Dashboard.css" />
+  <title>Kinetica - Vehículos eléctricos</title>
+  <link rel="icon" href="{{ url_for('static', filename='img/Logo.png.jpg') }}" type="image/x-icon" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/Vehiculo.css') }}" />
 </head>
 <body>
-
   <!-- Barra lateral -->
   <aside class="sidebar">
     <div class="logo">
-      <img src="../../static/img/Logo.png" alt="Kinetica Logo">
+      <img src="{{ url_for('static', filename='img/Logo.png.jpg') }}" alt="Kinetica Logo">
+      <h2>Kinetica</h2>
     </div>
     <nav>
       <ul>
-        <li><i class="icon">📰</i><a href="/templates/usuarios/dashboard.html">Noticias</a></li>
-        <li class="active"><i class="icon">🚗</i><a href="#">Vehículos</a></li>
+        <li><i class="icon">📰</i><a href="{{ url_for('main.dashboard') }}">Noticias</a></li>
+        <li class="active"><i class="icon">⚡</i><a href="{{ url_for('vehiculos.listar') }}">Vehículos</a></li>
         <li><i class="icon">🧮</i><a href="#">Calculadora</a></li>
         <li><i class="icon">🗺️</i><a href="#">Mapa</a></li>
-        <li><i class="icon">👤</i><a href="#">Cuenta</a></li>
+        <li><i class="icon">👤</i><a href="{{ url_for('usuarios.cuenta') }}">Cuenta</a></li>
       </ul>
     </nav>
   </aside>
 
-  <!-- Contenedor principal -->
+  <!-- Contenido principal -->
   <main class="content">
-
-    <!-- Encabezado -->
     <header class="header">
-      <h2>Bienvenido, <span id="nombreUsuario">Usuario</span> 👋</h2>
-      <button class="logout-btn">Cerrar sesión</button>
+      <h2>Catálogo de vehículos eléctricos ⚡</h2>
+      <div class="header-right">
+        <div class="user-greeting">
+          <div class="avatar-circle">👋</div>
+          <div class="user-text">
+            <p class="welcome">Hola,</p>
+            <p class="username" id="nombreUsuario">{{ usuario_nombre }}</p>
+          </div>
+        </div>
+        <button class="logout-btn" id="logoutBtn" data-logout-url="{{ url_for('usuarios.logout') }}">
+          Cerrar sesión
+        </button>
+      </div>
     </header>
 
     <!-- Sección principal -->
     <section class="main-section">
 
-      <!-- Vehículo destacado (usa la clase featured-news para mantener estilos) -->
-      <div class="featured-news">
-        <h1>Vehículo destacado</h1>
-        <p>Marca: <strong>Toyota</strong> • Modelo: <strong>Corolla Cross</strong></p>
-        <p>Año: 2023 • Kilometraje: 12,345 km</p>
-        <p style="opacity:0.95; margin-top:8px;">Precio: <strong>$45.000.000</strong></p>
-        <button class="btn-primario" style="margin-top:12px;">Ver detalles</button>
+      <!-- Vehículo destacado -->
+      <div class="featured-vehicle">
+        <div class="featured-info">
+          <h1>Vehículo destacado</h1>
+          <p><strong>Kia EV6 GT-Line 2024</strong></p>
+          <p>Autonomía: 506 km (WLTP)</p>
+          <p class="price">Precio aprox: $250.000.000 COP</p>
+          <button class="btn-primario" onclick="window.location.href='crear_Kia.html'">Ver detalles</button>
+        </div>
+        <!-- imagen proporcionada (cloudfront) -->
+        <img src="https://d2u1z1lopyfwlx.cloudfront.net/thumbnails/aa93bc08-60da-5b34-a454-a7c759571473/a1ae5bb0-9c73-5189-9e36-292bdc04a608.jpg"
+             alt="Kia EV6 GT-Line">
       </div>
 
       <!-- Filtros -->
@@ -54,53 +68,69 @@
         <button>Por precio</button>
       </div>
 
-      <!-- Lista de vehículos (se reutiliza la estructura .news-list / .news-card) -->
-      <div class="news-list">
-        <div class="news-card">
-          <div class="news-info">
-            <h3>Toyota Corolla Cross</h3>
-            <p>Categoría: SUV • 2023 • 12,345 km</p>
-            <p>Precio: $45.000.000 • Transmisión: Automática</p>
+      <!-- Lista de vehículos -->
+      <div class="vehicle-list">
+
+        <div class="vehicle-card">
+          <!-- Chevrolet Bolt (lp-auto-assets) -->
+          <img src="https://lp-auto-assets.s3.amazonaws.com/23/chevrolet/bolt-ev/M3/header.jpg" alt="Chevrolet Bolt EV">
+          <div class="vehicle-info">
+            <h3>Chevrolet Bolt EV 2023</h3>
+            <p>Hatchback • 2023 • 0 km</p>
+            <p>Autonomía: 416 km • $210.000.000</p>
+            <button class="btn-secundario" onclick="window.location.href='crear_Bolt.html'">Ver detalles</button>
           </div>
-          <div class="news-actions">⭐️⭐️⭐️⭐️☆ 🤍</div>
         </div>
 
-        <div class="news-card">
-          <div class="news-info">
-            <h3>Chevrolet Spark</h3>
-            <p>Categoría: Compacto • 2019 • 48,200 km</p>
-            <p>Precio: $22.500.000 • Transmisión: Manual</p>
+        <div class="vehicle-card">
+          <!-- Nissan Leaf (carbuzz image) -->
+          <img src="https://static0.carbuzzimages.com/wordpress/wp-content/uploads/gallery-images/original/402000/100/402104.jpg?q=50&fit=contain&w=750&h=422&dpr=1.5" alt="Nissan Leaf">
+          <div class="vehicle-info">
+            <h3>Nissan Leaf 2023</h3>
+            <p>Compacto • 2023 • 0 km</p>
+            <p>Autonomía: 385 km • $199.990.000</p>
+            <button class="btn-secundario" onclick="window.location.href='crear_Leaf.html'">Ver detalles</button>
           </div>
-          <div class="news-actions">⭐️⭐️⭐️☆☆ 🤍</div>
         </div>
 
-        <div class="news-card">
-          <div class="news-info">
-            <h3>BMW Serie 3</h3>
-            <p>Categoría: Sedán • 2021 • 28,900 km</p>
-            <p>Precio: $120.000.000 • Transmisión: Automática</p>
+        <div class="vehicle-card">
+          <!-- BMW i4 (cloudfront thumbnail) -->
+          <img src="https://d2u1z1lopyfwlx.cloudfront.net/thumbnails/d6898721-147a-553e-a37c-e9f272c21a89/317e674c-7cf8-59cd-8e53-d9e5af1fe5ed.jpg" alt="BMW i4">
+          <div class="vehicle-info">
+            <h3>BMW i4 eDrive40 2024</h3>
+            <p>Sedán • 2024 • 0 km</p>
+            <p>Autonomía: 483 km • $340.000.000</p>
+            <button class="btn-secundario" onclick="window.location.href='crear_BMW.html'">Ver detalles</button>
           </div>
-          <div class="news-actions">⭐️⭐️⭐️⭐️⭐️ 🤍</div>
         </div>
 
-        <!-- ejemplo con mini-imagen (si quieres usar imágenes reales, reemplaza el src) -->
-        <div class="news-card">
-          <div class="news-info" style="display:flex; gap:12px; align-items:center;">
-            <img src="../../static/img/vehicle-placeholder.png" alt="vehículo" style="width:84px; height:54px; object-fit:cover; border-radius:8px;">
-            <div>
-              <h3>Ford Ranger</h3>
-              <p>Categoría: Camioneta • 2022 • 8,000 km</p>
-              <p>Precio: $98.000.000 • Tracción 4x4</p>
-            </div>
+        <div class="vehicle-card">
+          <!-- Volvo XC40 (img.sm360) -->
+          <img src="https://img.sm360.ca/ir/w1280h1024/images/article/beaucage/121995//article-essai-volvo-xc40-recharge-2024-photos_11699642294458.jpg" alt="Volvo XC40 Recharge">
+          <div class="vehicle-info">
+            <h3>Volvo XC40 Recharge 2024</h3>
+            <p>SUV • 2024 • 0 km</p>
+            <p>Autonomía: 460 km • $320.000.000</p>
+            <button class="btn-secundario" onclick="window.location.href='crear_Volvo.html'">Ver detalles</button>
           </div>
-          <div class="news-actions">⭐️⭐️⭐️⭐️☆ 🤍</div>
+        </div>
+
+        <div class="vehicle-card">
+          <!-- Tesla Model 3 (hearstapps) -->
+          <img src="https://hips.hearstapps.com/hmg-prod/images/2024-tesla-model-3-long-range-rwd-120-66feb66119c63.jpg?crop=0.571xw:0.479xh;0.146xw,0.416xh&resize=2048:*" alt="Tesla Model 3">
+          <div class="vehicle-info">
+            <h3>Tesla Model 3 Long Range 2024</h3>
+            <p>Sedán • 2024 • 0 km</p>
+            <p>Autonomía: 513 km • $290.000.000</p>
+            <button class="btn-secundario" onclick="window.location.href='crear_Tesla.html'">Ver detalles</button>
+          </div>
         </div>
 
       </div>
     </section>
   </main>
 
-  <!-- Script: reemplaza o reutiliza tu dashboard.js con lógica de vehículos -->
-  <script src="../static/js/vehicles.js"></script>
+  <!-- Scripts -->
+  <script src="{{ url_for('static', filename='js/Global.js') }}"></script>
 </body>
 </html>

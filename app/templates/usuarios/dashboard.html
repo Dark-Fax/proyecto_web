@@ -7,6 +7,10 @@
   <link rel="icon" href="{{ url_for('static', filename='img/Logo.png.jpg') }}" type="image/x-icon">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/Dashboard.css') }}">
 </head>
+
+<script src="{{ url_for('static', filename='js/Global.js') }}"></script>
+<script src="{{ url_for('static', filename='js/Dashboard.js') }}"></script>
+
 <body>
 
   <!-- Barra lateral -->
@@ -16,12 +20,12 @@
       <h2>Kinetica</h2>
     </div>
     <nav>
-      <ul id="menu">
-        <li class="active" data-section="noticias"><i class="icon">📰</i><a href="#">Noticias</a></li>
-        <li data-section="vehiculos"><i class="icon">🚗</i><a href="{{ url_for('vehiculos.listar') }}">Vehículos</a></li>
-        <li data-section="calculadora"><i class="icon">🧮</i><a href="#">Calculadora</a></li>
-        <li data-section="mapa"><i class="icon">🗺️</i><a href="#">Mapa</a></li>
-        <li data-section="cuenta"><i class="icon">👤</i><a href="#">Cuenta</a></li>
+      <ul>
+        <li><i class="icon">📰</i><a href="{{ url_for('noticias.crear') }}">Noticias</a></li>
+        <li class="active"><i class="icon">⚡</i><a href="{{ url_for('vehiculos.listar') }}">Vehículos</a></li>
+        <li><i class="icon">🧮</i><a href="#">Calculadora</a></li>
+        <li><i class="icon">🗺️</i><a href="#">Mapa</a></li>
+        <li><i class="icon">👤</i><a href="{{ url_for('usuarios.cuenta') }}">Cuenta</a></li>
       </ul>
     </nav>
   </aside>
@@ -30,10 +34,26 @@
   <main class="content">
 
     <!-- Encabezado -->
-    <header class="header">
-      <h2>Bienvenido, <span id="nombreUsuario">{{ usuario_nombre }}</span> 👋</h2>
-      <button class="logout-btn" id="logoutBtn" data-logout-url="{{ url_for('usuarios.logout') }}" >Cerrar sesión</button>
-    </header>
+
+  <div class="header-right">
+    <div class="user-greeting">
+      <div class="avatar-circle">👋</div>
+      <div class="user-text">
+        <p class="welcome">Hola,</p>
+        <p class="username" id="nombreUsuario">{{ usuario_nombre }}</p>
+      </div>
+    </div>
+    <button class="logout-btn" id="logoutBtn" data-logout-url="{{ url_for('usuarios.logout') }}">
+      Cerrar sesión
+    </button>
+  </div>
+</header>
+
+
+
+
+
+
 
     <!-- Sección principal -->
     <section class="main-section" id="noticias">
@@ -54,11 +74,6 @@
     </section>
 
     <!-- Otras secciones (ocultas) -->
-    <section id="vehiculos" class="main-section" style="display:none;">
-      <h2>Vehículos disponibles</h2>
-      <p>Próximamente podrás explorar los modelos más recientes.</p>
-    </section>
-
     <section id="calculadora" class="main-section" style="display:none;">
       <h2>Calculadora de consumo</h2>
       <p>Calcula la eficiencia de tu vehículo.</p>
@@ -77,5 +92,8 @@
   </main>
 
   <script src="{{ url_for('static', filename='js/Dashboard.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/Global.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/Vehiculos.js') }}"></script>
+
 </body>
 </html>

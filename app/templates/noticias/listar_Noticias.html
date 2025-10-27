@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kinetica - Gestión de Noticias</title>
+    <link rel="icon" href="{{ url_for('static', filename='img/Logo.png.jpg') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Crear_Noticias.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Editar_Noticias.css') }}" />
+
+
+
+    <style>
+        /* Estilos adicionales para CRUD */
+        .news-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-edit,
+        .btn-delete {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .btn-edit {
+            background: linear-gradient(120deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-edit:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-delete {
+            background: linear-gradient(120deg, #f093fb, #f5576c);
+            color: white;
+        }
+
+        .btn-delete:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(245, 87, 108, 0.4);
+        }
+
+        .btn-create {
+            background: linear-gradient(120deg, #45d84c, #c4dc3d);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .btn-create:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(69, 216, 76, 0.4);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Barra lateral -->
+    <aside class="sidebar">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='img/Logo.png.jpg') }}" alt="Kinetica Logo">
+            <h2>Kinetica</h2>
+        </div>
+        <nav>
+            <ul id="menu">
+                <li class="active"><i class="icon">📰</i><a href="#">Noticias</a></li>
+                <li><i class="icon">🚗</i><a href="{{ url_for('vehiculos.listar') }}">Vehículos</a></li>
+                <li><i class="icon">🧮</i><a href="#">Calculadora</a></li>
+                <li><i class="icon">🗺️</i><a href="#">Mapa</a></li>
+                <li><i class="icon">👤</i><a href="#">Cuenta</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Contenedor principal -->
+    <main class="content">
+
+        <!-- Encabezado -->
+        <header class="header">
+            <h2>Gestión de Noticias 📰</h2>
+            <a href="{{ url_for('usuarios.cuenta') }}" class="logout-btn">← Volver</a>
+        </header>
+
+        <!-- Sección principal -->
+        <section class="main-section">
+
+            <!-- Botón para crear nueva noticia -->
+            <a href="{{ url_for('noticias.crear') }}" class="btn-create"
+                style="display: inline-block; text-align: center;">
+                ➕ Ver ultimas Noticias
+            </a>
+            
+            <!-- Lista de noticias -->
+            <div class="news-list" id="newsList">
+
+                <!-- Noticia 1 -->
+                <div class="news-card">
+                    <div class="news-info">
+                        <h3>🚗 Carros Eléctricos vs Tradicionales</h3>
+                        <p>Categoría: Tecnología • Autor: Admin • 250 vistas</p>
+                        <p>Comparación detallada entre vehículos eléctricos y tradicionales, analizando ventajas, costos
+                            y emisiones...</p>
+                    </div>
+                    <div class="news-actions">
+                        <a href="{{ url_for('noticias.editar', id=1) }}" class="btn-edit">✏️ Editar</a>
+                        <button class="btn-delete" onclick="eliminarNoticia(1)">🗑️ Eliminar</button>
+                    </div>
+                </div>
+
+                <!-- Noticia 2 -->
+                <div class="news-card">
+                    <div class="news-info">
+                        <h3>🌱 Innovaciones en Movilidad Sostenible</h3>
+                        <p>Categoría: Medio Ambiente • Autor: Admin • 189 vistas</p>
+                        <p>Últimas tecnologías y avances en vehículos sostenibles para el futuro de la movilidad
+                            urbana...</p>
+                    </div>
+                    <div class="news-actions">
+                        <button class="btn-edit" onclick="window.location.href='editar.html?id=2'">✏️ Editar</button>
+                        <button class="btn-delete" onclick="eliminarNoticia(2)">🗑️ Eliminar</button>
+                    </div>
+                </div>
+
+                <!-- Noticia 3 -->
+                <div class="news-card">
+                    <div class="news-info">
+                        <h3>⚡ Guía Completa: Carga de Vehículos Eléctricos</h3>
+                        <p>Categoría: Guía • Autor: Admin • 320 vistas</p>
+                        <p>Todo lo que necesitas saber sobre tipos de carga, estaciones disponibles y tiempos de
+                            carga...</p>
+                    </div>
+                    <div class="news-actions">
+                        <button class="btn-edit" onclick="window.location.href='editar.html?id=3'">✏️ Editar</button>
+                        <button class="btn-delete" onclick="eliminarNoticia(3)">🗑️ Eliminar</button>
+                    </div>
+                </div>
+
+                <!-- Noticia 4 -->
+                <div class="news-card">
+                    <div class="news-info">
+                        <h3>💰 Análisis de Costos: Eléctrico vs Combustible</h3>
+                        <p>Categoría: Finanzas • Autor: Admin • 445 vistas</p>
+                        <p>Comparación detallada de costos a largo plazo, incluyendo compra, mantenimiento y
+                            combustible...</p>
+                    </div>
+                    <div class="news-actions">
+                        <button class="btn-edit" onclick="window.location.href='editar.html?id=4'">✏️ Editar</button>
+                        <button class="btn-delete" onclick="eliminarNoticia(4)">🗑️ Eliminar</button>
+                    </div>
+                </div>
+
+                <!-- Noticia 5 -->
+                <div class="news-card">
+                    <div class="news-info">
+                        <h3>🔋 Baterías EV: Durabilidad y Cuidado</h3>
+                        <p>Categoría: Mantenimiento • Autor: Admin • 378 vistas</p>
+                        <p>Consejos prácticos para mantener tu batería eléctrica en óptimas condiciones...</p>
+                    </div>
+                    <div class="news-actions">
+                        <button class="btn-edit" onclick="window.location.href='editar.html?id=5'">✏️ Editar</button>
+                        <button class="btn-delete" onclick="eliminarNoticia(5)">🗑️ Eliminar</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function eliminarNoticia(id) {
+            if (confirm(`¿Estás seguro de que deseas eliminar la noticia #${id}?`)) {
+                alert(`Noticia #${id} eliminada exitosamente (en producción, aquí se conectaría con el backend)`);
+                // Aquí iría la llamada AJAX para eliminar en el servidor
+                // fetch(`/api/noticias/${id}`, { method: 'DELETE' })
+            }
+        }
+
+        // Animaciones de entrada
+        window.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.news-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+    </script>
+
+</body>
+
+</html>

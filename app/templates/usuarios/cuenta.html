@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuración de Cuenta - Kinetica</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Cuenta.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+
+    <!-- === SIDEBAR === -->
+    <aside class="sidebar">
+        <div class="logo">
+            <img src="https://cdn-icons-png.flaticon.com/512/1055/1055646.png" alt="Logo">
+            <h2>Kinetica</h2>
+        </div>
+
+        <ul>
+            <li><a href="{{ url_for('main.dashboard') }}">🏠 Dashboard</a></li>
+            <li><a href="{{ url_for('vehiculos.listar') }}">🚗 Vehículos</a></li>
+            <li class="active"><a href="{{ url_for('usuarios.cuenta') }}">⚙️ Mi Cuenta</a></li>
+        </ul>
+    </aside>
+
+    <!-- === CONTENIDO PRINCIPAL === -->
+    <main class="content">
+        <header class="header">
+            <h2>Configuración de <span>Cuenta</span> ⚙️</h2>
+            <button class="logout-btn" id="logoutBtn" data-logout-url="{{ url_for('usuarios.logout') }}">Cerrar
+                sesión</button>
+        </header>
+
+        <section class="account-section">
+            <form action="{{ url_for('usuarios.editar_cuenta') }}" method="POST" class="account-form">
+                <h3>Editar información personal</h3>
+
+                <div class="form-group">
+                    <label>Nombre completo</label>
+                    <input type="text" name="nombre" value="{{ usuario.nombre }}" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Correo electrónico</label>
+                    <input type="email" name="email" value="{{ usuario.email }}" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Teléfono</label>
+                    <input type="text" name="telefono" value="{{ usuario.telefono }}" maxlength="10" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Nueva contraseña (opcional):</label>
+                    <input type="password" name="nueva_contrasena" placeholder="Deja en blanco si no deseas cambiarla">
+                </div>
+                
+                <div class="form-buttons">
+                    <button type="submit" class="btn-guardar">💾 Guardar cambios</button>
+                </div>
+            </form>
+
+            <hr>
+
+            <form action="{{ url_for('usuarios.eliminar_cuenta') }}" method="POST"
+                onsubmit="return confirm('¿Seguro que deseas eliminar tu cuenta? Esta acción no se puede deshacer 😢');">
+                <button type="submit" class="btn-eliminar">🗑️ Eliminar cuenta</button>
+            </form>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/Global.js') }}"></script>
+</body>
+
+</html>

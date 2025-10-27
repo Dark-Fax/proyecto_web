@@ -51,9 +51,11 @@ def create_app():
     from app.routes.main_routes import main 
     from app.routes.usuarios_routes import usuarios
     from app.routes.vehiculos_routes import vehiculos
+    from app.routes.noticias_routes import noticias
     
     app.register_blueprint(main)     
     app.register_blueprint(usuarios)   
     app.register_blueprint(vehiculos)
-                                       
+    app.register_blueprint(noticias)
+
     return app                          

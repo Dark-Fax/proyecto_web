@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BMW i4 eDrive40 2024 ⚡</title>
+  <link rel="icon" href="{{ url_for('static', filename='img/Logo.png.jpg') }}" type="image/x-icon" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/Visual.css') }}" />
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="logo">
+      <img src="{{ url_for('static', filename='img/Logo.png.jpg') }}" alt="Kinetica Logo">
+      <h2>Kinetica</h2>
+    </div>
+    <nav>
+      <ul>
+        <li><i>📰</i><a href="{{ url_for('main.dashboard') }}">Noticias</a></li>
+        <li class="active"><i>⚡</i><a href="{{ url_for('vehiculos.listar') }}">Vehículos eléctricos</a></li>
+        <li><i>🧮</i><a href="#">Calculadora</a></li>
+        <li><i>🗺️</i><a href="#">Mapa</a></li>
+        <li><i>👤</i><a href="#">Cuenta</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <header class="header">
+      <h2>BMW i4 eDrive40 2024 ⚡</h2>
+      <div class="header-right">
+        <div class="user-greeting">
+          <div class="avatar-circle">👋</div>
+          <div class="user-text">
+            <p class="welcome">Hola,</p>
+            <p class="username">Usuario</p>
+          </div>
+        </div>
+        <button class="logout-btn">Cerrar sesión</button>
+      </div>
+    </header>
+
+    <section class="detalle-section">
+      <div class="detalle-container">
+        <img class="detalle-img" src="https://d2u1z1lopyfwlx.cloudfront.net/thumbnails/d6898721-147a-553e-a37c-e9f272c21a89/317e674c-7cf8-59cd-8e53-d9e5af1fe5ed.jpg" alt="BMW i4 eDrive40 2024">
+        <div class="detalle-info">
+          <h1>BMW i4 eDrive40 2024</h1>
+          <p>
+            El BMW i4 eDrive40 2024 combina la elegancia deportiva de la Serie 4 Gran Coupé con un tren motriz 100% eléctrico, ofreciendo un equilibrio perfecto entre rendimiento, lujo y sostenibilidad.
+          </p>
+
+          <div class="detalle-datos">
+            <p><strong>Tipo:</strong> Sedán eléctrico</p>
+            <p><strong>Año:</strong> 2024</p>
+            <p><strong>Autonomía:</strong> Hasta 484 km (EPA)</p>
+            <p><strong>Motor:</strong> 335 HP (250 kW)</p>
+            <p><strong>Transmisión:</strong> Automática de una velocidad</p>
+            <p><strong>Color disponible:</strong> Blanco Mineral</p>
+          </div>
+
+          <p class="detalle-precio">Precio aproximado: <strong>$290.000.000 COP</strong></p>
+
+          <div class="detalle-botones">
+            <button class="btn-primario" onclick="window.open('https://www.bmw.com.co/bmw-i4-edrive40-edicion-m-2025/p', '_blank')">Ficha técnica oficial</button>
+            <button class="btn-actualizar">Actualizar</button>
+            <button class="btn-eliminar">Eliminar</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="ficha-tecnica">
+        <h3>Ficha técnica detallada</h3>
+        <table>
+          <tr><td>Batería</td><td>83.9 kWh</td></tr>
+          <tr><td>Tiempo de carga rápida</td><td>31 min (10–80%)</td></tr>
+          <tr><td>Velocidad máxima</td><td>190 km/h</td></tr>
+          <tr><td>Aceleración 0–100 km/h</td><td>5.7 s</td></tr>
+          <tr><td>Tracción</td><td>Trasera (RWD)</td></tr>
+          <tr><td>Garantía</td><td>8 años o 160.000 km</td></tr>
+          <tr><td>Conectividad</td><td>BMW iDrive 8 / Apple CarPlay / Android Auto</td></tr>
+          <tr><td>Puertos de carga</td><td>CCS Combo</td></tr>
+        </table>
+      </div>
+
+      <div class="volver">
+        <button onclick="window.location.href='listar.html'" class="btn-volver">← Volver al catálogo</button>
+      </div>
+    </section>
+  </main>
+    <script src="{{ url_for('static', filename='js/Global.js') }}"></script>
+</body>
+</html>

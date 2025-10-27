@@ -4,8 +4,10 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash,
 from app import db 
 from app.models.usuario import Usuario #Aqui importaremos el modelo de Usuario
 
-usuarios = Blueprint('usuarios', __name__)
+usuarios = Blueprint('usuarios', __name__, template_folder='../templates/usuarios')
 
+
+#Registro 
 @usuarios.route('/register', methods=['GET', 'POST'])
 def registro():
     if request.method == 'POST':
@@ -20,17 +22,14 @@ def registro():
             flash('Todos los campos son obligatorios', 'danger')
             return redirect(url_for('usuarios.registro'))
 
-        #Verificar si el usuario ya existe 
-        usuario_existente = Usuario.query.filter_by(nombre=nombre).first()
-        if usuario_existente:
-            flash('Este nombre de usuario ya esta registrado', 'danger')
+        #Verificar si el usuario y email ya existe 
+        if Usuario.query.filter_by(nombre=nombre).first():
+            flash('Este nombre de usuario ya está registrado 😕', 'danger')
             return redirect(url_for('usuarios.registro'))
-        
-        #Verificar si el correo ya existe 
-        email_existente = Usuario.query.filter_by(email=correo).first()
-        if email_existente:
-            flash('Este correo ya esta registrado', 'danger')
+        if Usuario.query.filter_by(email=correo).first():
+            flash('Este correo ya está registrado 📧', 'danger')
             return redirect(url_for('usuarios.registro'))
+
 
         nuevo_usuario = Usuario(
             nombre=nombre,
@@ -72,8 +71,54 @@ def login():
         
     return render_template('usuarios/login.html')
 
+
+#Logout
 @usuarios.route('/logout')
 def logout():
     session.clear()
     flash('Sesión cerrada correctamente', 'sucess')
     return redirect(url_for('usuarios.login'))
+
+#Ver perfil
+@usuarios.route('/cuenta')
+def cuenta():
+    if 'usuario_id' not in session:
+        flash('Debes iniciar sesión primero', 'danger')
+        return redirect(url_for('usuarios.login'))
+    
+    usuario = Usuario.query.get(session['usuario_id'])
+    return render_template('usuarios/cuenta.html', usuario=usuario)
+
+#Editar cuenta
+@usuarios.route('/cuenta/editar', methods=['POST'])
+def editar_cuenta():
+    if 'usuario_id' not in session:
+        flash('Debes iniciar sesión primero', 'danger')
+        return redirect(url_for('usuarios.login'))
+    
+    usuario = Usuario.query.get(session['usuario_id'])
+    usuario.nombre = request.form['nombre']
+    usuario.telefono = request.form['telefono']
+    usuario.email = request.form['email']
+    
+    nueva_contrasena = request.form.get('nueva_contrasena')
+    if nueva_contrasena:
+        usuario.set_password(nueva_contrasena)
+    db.session.commit()
+
+    flash('Cuenta actualizada correctamente', 'success')
+    return redirect(url_for('usuarios.cuenta'))
+
+#eliminar cuenta 
+@usuarios.route('/cuenta/eliminar', methods=['POST'])
+def eliminar_cuenta():
+    if 'usuario_id' not in session:
+        return redirect(url_for('usuarios.login'))
+    
+    usuario = Usuario.query.get(session['usuario_id'])
+    db.session.delete(usuario)
+    db.session.commit()
+    session.clear()
+
+    flash('Tu cuenta ha sido eliminada permanentemente', 'info')
+    return redirect(url_for('usuarios.registro'))
