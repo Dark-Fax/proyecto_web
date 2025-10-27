@@ -50,8 +50,10 @@ def create_app():
     #Importamos y registraremos las rutas 
     from app.routes.main_routes import main 
     from app.routes.usuarios_routes import usuarios
-
-    app.register_blueprint(main)
-    app.register_blueprint(usuarios)
-
-    return app
+    from app.routes.vehiculos_routes import vehiculos
+    
+    app.register_blueprint(main)     
+    app.register_blueprint(usuarios)   
+    app.register_blueprint(vehiculos)
+                                       
+    return app                          

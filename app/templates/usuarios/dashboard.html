@@ -18,7 +18,7 @@
     <nav>
       <ul id="menu">
         <li class="active" data-section="noticias"><i class="icon">📰</i><a href="#">Noticias</a></li>
-        <li data-section="vehiculos"><i class="icon">🚗</i><a href="/templates/vehiculos/listar.html">Vehículos</a></li>
+        <li data-section="vehiculos"><i class="icon">🚗</i><a href="{{ url_for('vehiculos.listar') }}">Vehículos</a></li>
         <li data-section="calculadora"><i class="icon">🧮</i><a href="#">Calculadora</a></li>
         <li data-section="mapa"><i class="icon">🗺️</i><a href="#">Mapa</a></li>
         <li data-section="cuenta"><i class="icon">👤</i><a href="#">Cuenta</a></li>
