@@ -31,21 +31,19 @@
 
     <!-- Contenedor principal -->
     <main class="content">
-    <header class="header">
-    <div class="header-right">
-        <div class="user-greeting">
-            <div class="avatar-circle">👋</div>
-            <div class="user-text">
-                <p class="welcome">Hola,</p>
-                <p class="username" id="nombreUsuario">{{ usuario_nombre }}</p>
+        <header class="header">
+            <div class="header-right">
+                <div class="user-greeting">
+                    <div class="avatar-circle">👋</div>
+                    <div class="user-text">
+                        <p class="welcome">Hola,</p>
+                        <p class="username" id="nombreUsuario">{{ usuario_nombre }}</p>
+                    </div>
+                </div>
+                <a href="{{ url_for('usuarios.logout') }}" class="logout-btn">Cerrar sesión</a>
             </div>
-        </div>
-       <button class="logout-btn" id="logoutBtn" data-logout-url="{{ url_for('usuarios.logout') }}">
-          Cerrar sesión
-        </button>
-    </div>
-</header>
-       
+        </header>
+
 
         <div class="btn-group" style="margin-bottom: 20px;">
             <a href="{{ url_for('noticias.listar') }}" class="btn-gestion-noticias">📰 Gestión de Noticias</a>
