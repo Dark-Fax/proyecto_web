@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tesla Model 3 Long Range 2024 ⚡</title>
   <link rel="icon" href="{{ url_for('static', filename='img/Logo.png.jpg') }}" type="image/x-icon" />
   <link rel="stylesheet" href="{{ url_for('static', filename='css/Visual.css') }}" />
 </head>
+
 <body>
   <aside class="sidebar">
     <div class="logo">
@@ -32,21 +34,25 @@
           <div class="avatar-circle">👋</div>
           <div class="user-text">
             <p class="welcome">Hola,</p>
-            <p class="username">Usuario</p>
+            <p class="username" id="nombreUsuario">{{ usuario_nombre }}</p>
           </div>
         </div>
-        <button class="logout-btn">Cerrar sesión</button>
+        <button id="logoutBtn" class="logout-btn" data-logout-url="{{ url_for('usuarios.logout') }}">Cerrar
+          sesión</button>
       </div>
     </header>
 
     <section class="detalle-section">
       <div class="detalle-container">
-        <img class="detalle-img" src="https://hips.hearstapps.com/hmg-prod/images/2024-tesla-model-3-long-range-rwd-120-66feb66119c63.jpg?crop=0.571xw:0.479xh;0.146xw,0.416xh&resize=2048:*">
+        <img class="detalle-img"
+          src="https://hips.hearstapps.com/hmg-prod/images/2024-tesla-model-3-long-range-rwd-120-66feb66119c63.jpg?crop=0.571xw:0.479xh;0.146xw,0.416xh&resize=2048:*">
         <div class="detalle-info">
           <h1>Tesla Model 3 Long Range 2024</h1>
           <p>
-            El Tesla Model 3 Long Range 2024 redefine la movilidad eléctrica con su impresionante autonomía, aceleración instantánea y tecnología avanzada de conducción autónoma.
-            Su diseño minimalista, materiales premium y conectividad continua ofrecen una experiencia de conducción de vanguardia.
+            El Tesla Model 3 Long Range 2024 redefine la movilidad eléctrica con su impresionante autonomía, aceleración
+            instantánea y tecnología avanzada de conducción autónoma.
+            Su diseño minimalista, materiales premium y conectividad continua ofrecen una experiencia de conducción de
+            vanguardia.
           </p>
 
           <div class="detalle-datos">
@@ -61,7 +67,8 @@
           <p class="detalle-precio">Precio aproximado: <strong>$320.000.000 COP</strong></p>
 
           <div class="detalle-botones">
-            <button class="btn-primario" onclick="window.open('https://www.tesla.com/model3', '_blank')">Ficha técnica oficial</button>
+            <button class="btn-primario" onclick="window.open('https://www.tesla.com/model3', '_blank')">Ficha técnica
+              oficial</button>
             <button class="btn-actualizar">Actualizar</button>
             <button class="btn-eliminar">Eliminar</button>
           </div>
@@ -71,22 +78,48 @@
       <div class="ficha-tecnica">
         <h3>Ficha técnica detallada</h3>
         <table>
-          <tr><td>Batería</td><td>82 kWh</td></tr>
-          <tr><td>Tiempo de carga rápida</td><td>25 min (10–80%)</td></tr>
-          <tr><td>Velocidad máxima</td><td>201 km/h</td></tr>
-          <tr><td>Aceleración 0–100 km/h</td><td>4.4 s</td></tr>
-          <tr><td>Tracción</td><td>Total (AWD)</td></tr>
-          <tr><td>Garantía</td><td>8 años o 192.000 km</td></tr>
-          <tr><td>Conectividad</td><td>Tesla App / Spotify / YouTube / Navegador integrado</td></tr>
-          <tr><td>Puertos de carga</td><td>CCS Combo Tipo 2 (Supercharger)</td></tr>
+          <tr>
+            <td>Batería</td>
+            <td>82 kWh</td>
+          </tr>
+          <tr>
+            <td>Tiempo de carga rápida</td>
+            <td>25 min (10–80%)</td>
+          </tr>
+          <tr>
+            <td>Velocidad máxima</td>
+            <td>201 km/h</td>
+          </tr>
+          <tr>
+            <td>Aceleración 0–100 km/h</td>
+            <td>4.4 s</td>
+          </tr>
+          <tr>
+            <td>Tracción</td>
+            <td>Total (AWD)</td>
+          </tr>
+          <tr>
+            <td>Garantía</td>
+            <td>8 años o 192.000 km</td>
+          </tr>
+          <tr>
+            <td>Conectividad</td>
+            <td>Tesla App / Spotify / YouTube / Navegador integrado</td>
+          </tr>
+          <tr>
+            <td>Puertos de carga</td>
+            <td>CCS Combo Tipo 2 (Supercharger)</td>
+          </tr>
         </table>
       </div>
 
       <div class="volver">
-        <button onclick="window.location.href='listar.html'" class="btn-volver">← Volver al catálogo</button>
+        <button id="btnVolver" class="btn-volver" data-url="{{ url_for('vehiculos.listar') }}">← Volver al
+          catálogo</button>
       </div>
     </section>
   </main>
-    <script src="{{ url_for('static', filename='js/Global.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/Global.js') }}"></script>
 </body>
+
 </html>

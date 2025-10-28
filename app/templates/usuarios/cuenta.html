@@ -6,38 +6,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Configuración de Cuenta - Kinetica</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/Cuenta.css') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="{{ url_for('static', filename='img/Logo.png.jpg') }}" type="image/x-icon">
+
 </head>
 
 <body>
 
-
-    <!-- === SIDEBAR === -->
+    <!-- Barra lateral -->
     <aside class="sidebar">
         <div class="logo">
-            <img src="https://cdn-icons-png.flaticon.com/512/1055/1055646.png" alt="Logo">
+            <img src="../../static/img/Logo.png.jpg" alt="Kinetica Logo">
             <h2>Kinetica</h2>
         </div>
-
-        <ul>
-            <li><a href="{{ url_for('main.dashboard') }}">🏠 Dashboard</a></li>
-            <li><a href="{{ url_for('vehiculos.listar') }}">🚗 Vehículos</a></li>
-            <li class="active"><a href="{{ url_for('usuarios.cuenta') }}">⚙️ Mi Cuenta</a></li>
-        </ul>
+        <nav>
+            <ul>
+                <li><i class="active">📰</i><a href="{{ url_for('noticias.crear') }}">Noticias</a></li>
+                <li class="icon"><i class="icon">⚡</i><a href="{{ url_for('vehiculos.listar') }}">Vehículos
+                        eléctricos</a></li>
+                <li><i class="icon">🧮</i><a href="#">Calculadora</a></li>
+                <li><i class="icon">🗺️</i><a href="#">Mapa</a></li>
+                <li><i class="icon">👤</i><a href="{{ url_for('usuarios.cuenta') }}">Cuenta</a></li>
+            </ul>
+        </nav>
     </aside>
 
     <!-- === CONTENIDO PRINCIPAL === -->
     <main class="content">
         <header class="header">
-            <h2>Configuración de <span>Cuenta</span> ⚙️</h2>
-            <button class="logout-btn" id="logoutBtn" data-logout-url="{{ url_for('usuarios.logout') }}">Cerrar
-                sesión</button>
+            <h2>Configuración de <span>Cuenta</span> 👤</h2>
+            <div class="header-right">
+                <div class="user-greeting">
+                    <div class="avatar-circle">👋</div>
+                    <div class="user-text">
+                        <p class="welcome">Hola,</p>
+                        <p class="username">{{ usuario.nombre }}</p>
+                    </div>
+                </div>
+                <button class="logout-btn" id="logoutBtn" data-logout-url="{{ url_for('usuarios.logout') }}">
+                    Cerrar sesión
+                </button>
+            </div>
         </header>
 
+        <!-- Contenido principal -->
         <section class="account-section">
-            <form action="{{ url_for('usuarios.editar_cuenta') }}" method="POST" class="account-form">
-                <h3>Editar información personal</h3>
-
+            <form action="{{ url_for('usuarios.editar_cuenta') }}" method="POST" class="account-form" novalidate>
+                <h3 class="form-title">Editar información personal</h3>
                 <div class="form-group">
                     <label>Nombre completo</label>
                     <input type="text" name="nombre" value="{{ usuario.nombre }}" required>
@@ -57,7 +71,7 @@
                     <label>Nueva contraseña (opcional):</label>
                     <input type="password" name="nueva_contrasena" placeholder="Deja en blanco si no deseas cambiarla">
                 </div>
-                
+
                 <div class="form-buttons">
                     <button type="submit" class="btn-guardar">💾 Guardar cambios</button>
                 </div>

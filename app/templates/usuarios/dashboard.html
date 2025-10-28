@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,8 +22,8 @@
     </div>
     <nav>
       <ul>
-        <li><i class="icon">📰</i><a href="{{ url_for('noticias.crear') }}">Noticias</a></li>
-        <li class="active"><i class="icon">⚡</i><a href="{{ url_for('vehiculos.listar') }}">Vehículos</a></li>
+        <li><i class="active">📰</i><a href="{{ url_for('noticias.crear') }}">Noticias</a></li>
+        <li class="icon"><i class="icon">⚡</i><a href="{{ url_for('vehiculos.listar') }}">Vehículos</a></li>
         <li><i class="icon">🧮</i><a href="#">Calculadora</a></li>
         <li><i class="icon">🗺️</i><a href="#">Mapa</a></li>
         <li><i class="icon">👤</i><a href="{{ url_for('usuarios.cuenta') }}">Cuenta</a></li>
@@ -33,45 +34,9 @@
   <!-- Contenedor principal -->
   <main class="content">
 
-    <!-- Encabezado -->
-
-  <div class="header-right">
-    <div class="user-greeting">
-      <div class="avatar-circle">👋</div>
-      <div class="user-text">
-        <p class="welcome">Hola,</p>
-        <p class="username" id="nombreUsuario">{{ usuario_nombre }}</p>
-      </div>
-    </div>
-    <button class="logout-btn" id="logoutBtn" data-logout-url="{{ url_for('usuarios.logout') }}">
-      Cerrar sesión
-    </button>
-  </div>
-</header>
-
-
-
-
-
-
+    {% include 'partials/header_usuario.html' %}
 
     <!-- Sección principal -->
-    <section class="main-section" id="noticias">
-      <div class="featured-news">
-        <h1>Noticia del día</h1>
-        <p>@Autor • Innovaciones del sector automotriz</p>
-        <button class="btn-primario">Leer noticia</button>
-      </div>
-
-      <!-- Filtros -->
-      <div class="filters">
-        <button id="btnSinVer" class="activo">Sin ver</button>
-        <button id="btnVistas">Vistas</button>
-      </div>
-
-      <!-- Lista de noticias -->
-      <div class="news-list" id="newsList"></div>
-    </section>
 
     <!-- Otras secciones (ocultas) -->
     <section id="calculadora" class="main-section" style="display:none;">
@@ -96,4 +61,5 @@
   <script src="{{ url_for('static', filename='js/Vehiculos.js') }}"></script>
 
 </body>
+
 </html>

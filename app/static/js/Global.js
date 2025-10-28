@@ -47,4 +47,14 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             });
     }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const btnVolver = document.getElementById("btnVolver");
+        if (btnVolver) {
+            btnVolver.addEventListener("click", () => {
+                window.location.href = "{{ url_for('vehiculos.listar') }}";
+        });
+    }
+});
+
 });

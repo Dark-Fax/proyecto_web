@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kinetica - Detalles del Vehículo ⚡</title>
   <link rel="icon" href="{{ url_for('static', filename='img/Logo.png.jpg') }}" type="image/x-icon" />
   <link rel="stylesheet" href="{{ url_for('static', filename='css/Visual.css') }}" />
 </head>
+
 <body>
 
   <!-- === SIDEBAR === -->
@@ -18,7 +20,8 @@
     <nav>
       <ul>
         <li><i class="icon">📰</i><a href="{{ url_for('main.dashboard') }}">Noticias</a></li>
-        <li class="active"><i class="icon">⚡</i><a href="{{ url_for('vehiculos.listar') }}">Vehículos eléctricos</a></li>
+        <li class="active"><i class="icon">⚡</i><a href="{{ url_for('vehiculos.listar') }}">Vehículos eléctricos</a>
+        </li>
         <li><i class="icon">🧮</i><a href="#">Calculadora</a></li>
         <li><i class="icon">🗺️</i><a href="#">Mapa</a></li>
         <li><i class="icon">👤</i><a href="#">Cuenta</a></li>
@@ -35,22 +38,27 @@
           <div class="avatar-circle">👋</div>
           <div class="user-text">
             <p class="welcome">Hola,</p>
-            <p class="username">Usuario</p>
+            <p class="username" id="nombreUsuario">{{ usuario_nombre }}</p>
           </div>
         </div>
-        <button class="logout-btn">Cerrar sesión</button>
+        <button id="logoutBtn" class="logout-btn" data-logout-url="{{ url_for('usuarios.logout') }}">Cerrar
+          sesión</button>
+      </div>
       </div>
     </header>
 
     <!-- === SECCIÓN DE DETALLES === -->
     <section class="detalle-section">
       <div class="detalle-container">
-        <img class="detalle-img" src="https://d2u1z1lopyfwlx.cloudfront.net/thumbnails/aa93bc08-60da-5b34-a454-a7c759571473/a1ae5bb0-9c73-5189-9e36-292bdc04a608.jpg" alt="Kia EV6 GT-Line">
+        <img class="detalle-img"
+          src="https://d2u1z1lopyfwlx.cloudfront.net/thumbnails/aa93bc08-60da-5b34-a454-a7c759571473/a1ae5bb0-9c73-5189-9e36-292bdc04a608.jpg"
+          alt="Kia EV6 GT-Line">
 
         <div class="detalle-info">
           <h1>Kia EV6 GT-Line 2024</h1>
-          <p>El Kia EV6 GT-Line 2024 combina rendimiento eléctrico, diseño deportivo y tecnología avanzada. Su batería de alta capacidad ofrece gran autonomía y aceleración instantánea.</p>
-          
+          <p>El Kia EV6 GT-Line 2024 combina rendimiento eléctrico, diseño deportivo y tecnología avanzada. Su batería
+            de alta capacidad ofrece gran autonomía y aceleración instantánea.</p>
+
           <div class="detalle-datos">
             <p><strong>Tipo:</strong> SUV eléctrico</p>
             <p><strong>Año:</strong> 2024</p>
@@ -63,7 +71,9 @@
           <p class="detalle-precio">Precio aproximado: <strong>$250.000.000 COP</strong></p>
 
           <div class="detalle-botones">
-            <button class="btn-primario" onclick="window.open('https://www.kia.com/mx/showroom/ev6/specification.html', '_blank')">Ficha técnica oficial</button>
+            <button class="btn-primario"
+              onclick="window.open('https://www.kia.com/mx/showroom/ev6/specification.html', '_blank')">Ficha técnica
+              oficial</button>
             <button class="btn-actualizar">Actualizar</button>
             <button class="btn-eliminar">Eliminar</button>
           </div>
@@ -73,22 +83,48 @@
       <div class="ficha-tecnica">
         <h3>Ficha técnica detallada</h3>
         <table>
-          <tr><td>Batería</td><td>77.4 kWh</td></tr>
-          <tr><td>Tiempo de carga rápida</td><td>18 min (10–80%)</td></tr>
-          <tr><td>Velocidad máxima</td><td>185 km/h</td></tr>
-          <tr><td>Tracción</td><td>Total (AWD)</td></tr>
-          <tr><td>Aceleración 0–100 km/h</td><td>5.2 s</td></tr>
-          <tr><td>Garantía</td><td>7 años o 150.000 km</td></tr>
-          <tr><td>Conectividad</td><td>Android Auto / Apple CarPlay</td></tr>
-          <tr><td>Puertos de carga</td><td>CCS Combo Tipo 2</td></tr>
+          <tr>
+            <td>Batería</td>
+            <td>77.4 kWh</td>
+          </tr>
+          <tr>
+            <td>Tiempo de carga rápida</td>
+            <td>18 min (10–80%)</td>
+          </tr>
+          <tr>
+            <td>Velocidad máxima</td>
+            <td>185 km/h</td>
+          </tr>
+          <tr>
+            <td>Tracción</td>
+            <td>Total (AWD)</td>
+          </tr>
+          <tr>
+            <td>Aceleración 0–100 km/h</td>
+            <td>5.2 s</td>
+          </tr>
+          <tr>
+            <td>Garantía</td>
+            <td>7 años o 150.000 km</td>
+          </tr>
+          <tr>
+            <td>Conectividad</td>
+            <td>Android Auto / Apple CarPlay</td>
+          </tr>
+          <tr>
+            <td>Puertos de carga</td>
+            <td>CCS Combo Tipo 2</td>
+          </tr>
         </table>
       </div>
 
       <div class="volver">
-        <button onclick="window.location.href='listar.html'" class="btn-volver">← Volver al catálogo</button>
+        <button id="btnVolver" class="btn-volver" data-url="{{ url_for('vehiculos.listar') }}">← Volver al
+          catálogo</button>
       </div>
     </section>
   </main>
-    <script src="{{ url_for('static', filename='js/Global.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/Global.js') }}"></script>
 </body>
+
 </html>

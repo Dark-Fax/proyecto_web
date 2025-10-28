@@ -1,16 +1,25 @@
-# app/routes/noticias_routes.py
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, session, redirect, url_for, flash
 
-noticias = Blueprint('noticias', __name__, url_prefix='/noticias')
+noticias = Blueprint("noticias", __name__, url_prefix="/noticias")
 
-@noticias.route('/')
+@noticias.route("/")
 def listar():
-    return render_template('noticias/listar_Noticias.html')
+    if "usuario_nombre" not in session:
+        flash("Debes iniciar sesión", "danger")
+        return redirect(url_for("usuarios.login"))
+    return render_template("noticias/listar_Noticias.html")
 
-@noticias.route('/crear')
+@noticias.route("/crear")
 def crear():
-    return render_template('noticias/crear_Noticias.html')
+    if "usuario_nombre" not in session:
+        flash("Debes iniciar sesión", "danger")
+        return redirect(url_for("usuarios.login"))
+    nombre_usuario = session["usuario_nombre"]
+    return render_template("noticias/crear_Noticias.html", usuario_nombre=nombre_usuario)
 
-@noticias.route('/editar/<int:id>')
+@noticias.route("/editar/<int:id>")
 def editar(id):
-    return render_template('noticias/editar_Noticias.html', id=id)
+    if "usuario_nombre" not in session:
+        flash("Debes iniciar sesión", "danger")
+        return redirect(url_for("usuarios.login"))
+    return render_template("noticias/editar_Noticias.html", id=id)

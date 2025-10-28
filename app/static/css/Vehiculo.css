@@ -85,7 +85,7 @@ body {
   background-color: #fff;
   padding: 20px 25px;
   border-radius: 14px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 25px;
   display: flex;
   justify-content: space-between;
@@ -122,6 +122,28 @@ body {
   transform: scale(1.05);
 }
 
+
+/* === BOTÓN VEHÍCULO DESTACADO (BLANCO CON EFECTO NEGRO) === */
+.btn-primario {
+  background-color: #ffffff;
+  color: #45d84c;
+  border: 2px solid #45d84c;
+  border-radius: 20px;
+  padding: 10px 22px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 18px; /* 🔽 lo baja un poco */
+}
+
+.btn-primario:hover {
+  background-color: #000000; 
+  color: #ffffff;            
+  border-color: #000000;     
+  transform: scale(1.05);
+}
 /* === VEHÍCULO DESTACADO === */
 .featured-vehicle {
   background: linear-gradient(120deg, #45d84c, #c4dc3d);
@@ -133,7 +155,7 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 25px;
-  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
 }
 
 .featured-vehicle img {
@@ -141,7 +163,7 @@ body {
   height: 150px;
   object-fit: cover;
   border-radius: 14px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .featured-vehicle h1 {
@@ -155,22 +177,22 @@ body {
   color: #fff;
 }
 
-.btn-primario {
-  background-color: white;
-  color: #070707;
-  border: none;
-  border-radius: 25px;
-  padding: 10px 22px;
-  margin-top: 15px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: 0.3s;
+.btn-primario,
+.btn-secundario,
+.logout-btn {
+  text-decoration: none;
+  /* Quita subrayado */
+  display: inline-block;
+  text-align: center;
 }
 
-.btn-primario:hover {
-  background-color: #e1e1e1;
-  transform: scale(1.05);
+.btn-primario:hover,
+.btn-secundario:hover,
+.logout-btn:hover {
+  text-decoration: none;
+  /* Previene subrayado al pasar el mouse */
 }
+
 
 /* === FILTROS === */
 .filters {
@@ -213,14 +235,14 @@ body {
 .vehicle-card {
   background-color: #fff;
   border-radius: 14px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s;
   overflow: hidden;
 }
 
 .vehicle-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
 .vehicle-card img {
@@ -266,7 +288,7 @@ body {
   background-color: #ffffff;
   padding: 15px 25px;
   border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
   margin-bottom: 25px;
   display: flex;
   justify-content: space-between;
@@ -292,17 +314,17 @@ body {
   padding: 8px 16px;
   border-radius: 14px;
   color: white;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
 }
 
 .user-greeting:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
 }
 
 .avatar-circle {
-  background-color: rgba(255,255,255,0.2);
+  background-color: rgba(255, 255, 255, 0.2);
   border-radius: 50%;
   width: 36px;
   height: 36px;
@@ -321,7 +343,7 @@ body {
 .user-text .welcome {
   font-size: 0.8rem;
   font-weight: 400;
-  color: rgba(255,255,255,0.9);
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .user-text .username {

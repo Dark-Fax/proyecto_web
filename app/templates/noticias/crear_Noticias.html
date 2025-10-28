@@ -19,31 +19,38 @@
             <h2>Kinetica</h2>
         </div>
         <nav>
-            <ul id="menu">
-                <li class="active"><i class="icon">📰</i><a href="#">Noticias</a></li>
-                <li><i class="icon">🚗</i><a href="{{ url_for('vehiculos.listar') }}">Vehículos</a></li>
+            <ul>
+                <li><i class="active">📰</i><a href="{{ url_for('noticias.crear') }}">Noticias</a></li>
+                <li class="icon"><i class="icon">⚡</i><a href="{{ url_for('vehiculos.listar') }}">Vehículos</a></li>
                 <li><i class="icon">🧮</i><a href="#">Calculadora</a></li>
                 <li><i class="icon">🗺️</i><a href="#">Mapa</a></li>
-                <li><i class="icon">👤</i><a href="#">Cuenta</a></li>
+                <li><i class="icon">👤</i><a href="{{ url_for('usuarios.cuenta') }}">Cuenta</a></li>
             </ul>
         </nav>
     </aside>
 
     <!-- Contenedor principal -->
     <main class="content">
-
-        <!-- Encabezado -->
-        <header class="header">
-            <div class="btn-group">
-                <a href="{{ url_for('noticias.listar') }}" class="btn-gestion-noticias">
-                    📰 Gestión de Noticias
-                </a>
-
-                <a href="{{ url_for('noticias.editar', id=1) }}" class="btn-crear-editar">
-                    ✏️ Crear/Editar Noticia
-                </a>
+    <header class="header">
+    <div class="header-right">
+        <div class="user-greeting">
+            <div class="avatar-circle">👋</div>
+            <div class="user-text">
+                <p class="welcome">Hola,</p>
+                <p class="username" id="nombreUsuario">{{ usuario_nombre }}</p>
             </div>
-        </header>
+        </div>
+       <button class="logout-btn" id="logoutBtn" data-logout-url="{{ url_for('usuarios.logout') }}">
+          Cerrar sesión
+        </button>
+    </div>
+</header>
+       
+
+        <div class="btn-group" style="margin-bottom: 20px;">
+            <a href="{{ url_for('noticias.listar') }}" class="btn-gestion-noticias">📰 Gestión de Noticias</a>
+            <a href="{{ url_for('noticias.editar', id=1) }}" class="btn-crear-editar">✏️ Crear/Editar Noticia</a>
+        </div>
 
         <!-- Sección de creación -->
         <section class="main-section">

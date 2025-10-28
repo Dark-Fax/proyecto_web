@@ -1,22 +1,20 @@
-#Esta sera la ruta prinicpal de la pagina 'Home'
-from flask import Blueprint, render_template, session, redirect, url_for, flash
+from flask import Blueprint, session, redirect, render_template, url_for, flash
 
 main = Blueprint('main', __name__)
 
 @main.route('/')
 def home():
-    #Redirige al dashboard si el usuario ya inició sesión
+    # Si el usuario ya inició sesión, lo mandamos directo a crear noticias
     if 'usuario_nombre' in session:
-        return redirect(url_for('main.dashboard'))
+        return redirect(url_for('noticias.crear'))
     return redirect(url_for('usuarios.login'))
 
+# Mantener /dashboard para otras secciones que no sean noticias
 @main.route('/dashboard')
 def dashboard():
-    #erificamos que el usuario este logueado
     if 'usuario_nombre' not in session:
         flash('Debes iniciar sesión primero', 'danger')
         return redirect(url_for('usuarios.login'))
-    
-    #Pasar el nombre de usuario al template 
-    nombre_usuario = session['usuario_nombre']
-    return render_template('usuarios/dashboard.html', usuario_nombre=nombre_usuario)
+
+    # Solo renderiza dashboard si quieres mostrar algo
+    return render_template('usuarios/dashboard.html', usuario_nombre=session['usuario_nombre'])

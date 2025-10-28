@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nissan Leaf 2023 ⚡</title>
   <link rel="icon" href="{{ url_for('static', filename='img/Logo.png.jpg') }}" type="image/x-icon" />
   <link rel="stylesheet" href="{{ url_for('static', filename='css/Visual.css') }}" />
 </head>
+
 <body>
   <aside class="sidebar">
     <div class="logo">
@@ -32,19 +34,23 @@
           <div class="avatar-circle">👋</div>
           <div class="user-text">
             <p class="welcome">Hola,</p>
-            <p class="username">Usuario</p>
+            <p class="username" id="nombreUsuario">{{ usuario_nombre }}</p>
           </div>
         </div>
-        <button class="logout-btn">Cerrar sesión</button>
+        <button id="logoutBtn" class="logout-btn" data-logout-url="{{ url_for('usuarios.logout') }}">Cerrar
+          sesión</button>
       </div>
     </header>
 
     <section class="detalle-section">
       <div class="detalle-container">
-        <img class="detalle-img" src="https://static0.carbuzzimages.com/wordpress/wp-content/uploads/gallery-images/original/402000/100/402104.jpg?q=50&fit=contain&w=750&h=422&dpr=1.5" alt="Nissan Leaf 2023">
+        <img class="detalle-img"
+          src="https://static0.carbuzzimages.com/wordpress/wp-content/uploads/gallery-images/original/402000/100/402104.jpg?q=50&fit=contain&w=750&h=422&dpr=1.5"
+          alt="Nissan Leaf 2023">
         <div class="detalle-info">
           <h1>Nissan Leaf 2023</h1>
-          <p>El Nissan Leaf 2023 continúa siendo un referente en movilidad eléctrica. Compacto, confiable y con un diseño renovado, ofrece gran eficiencia y tecnología de asistencia avanzada.</p>
+          <p>El Nissan Leaf 2023 continúa siendo un referente en movilidad eléctrica. Compacto, confiable y con un
+            diseño renovado, ofrece gran eficiencia y tecnología de asistencia avanzada.</p>
 
           <div class="detalle-datos">
             <p><strong>Tipo:</strong> Hatchback eléctrico</p>
@@ -58,7 +64,9 @@
           <p class="detalle-precio">Precio aproximado: <strong>$180.000.000 COP</strong></p>
 
           <div class="detalle-botones">
-            <button class="btn-primario" onclick="window.open('https://www.nissanusa.com/vehicles/electric-cars/leaf.html', '_blank')">Ficha técnica oficial</button>
+            <button class="btn-primario"
+              onclick="window.open('https://www.nissanusa.com/vehicles/electric-cars/leaf.html', '_blank')">Ficha
+              técnica oficial</button>
             <button class="btn-actualizar">Actualizar</button>
             <button class="btn-eliminar">Eliminar</button>
           </div>
@@ -68,22 +76,48 @@
       <div class="ficha-tecnica">
         <h3>Ficha técnica detallada</h3>
         <table>
-          <tr><td>Batería</td><td>62 kWh</td></tr>
-          <tr><td>Tiempo de carga rápida</td><td>40 min (10–80%)</td></tr>
-          <tr><td>Velocidad máxima</td><td>157 km/h</td></tr>
-          <tr><td>Aceleración 0–100 km/h</td><td>7.3 s</td></tr>
-          <tr><td>Tracción</td><td>Delantera (FWD)</td></tr>
-          <tr><td>Garantía</td><td>8 años o 160.000 km</td></tr>
-          <tr><td>Conectividad</td><td>Android Auto / Apple CarPlay</td></tr>
-          <tr><td>Puertos de carga</td><td>CHAdeMO</td></tr>
+          <tr>
+            <td>Batería</td>
+            <td>62 kWh</td>
+          </tr>
+          <tr>
+            <td>Tiempo de carga rápida</td>
+            <td>40 min (10–80%)</td>
+          </tr>
+          <tr>
+            <td>Velocidad máxima</td>
+            <td>157 km/h</td>
+          </tr>
+          <tr>
+            <td>Aceleración 0–100 km/h</td>
+            <td>7.3 s</td>
+          </tr>
+          <tr>
+            <td>Tracción</td>
+            <td>Delantera (FWD)</td>
+          </tr>
+          <tr>
+            <td>Garantía</td>
+            <td>8 años o 160.000 km</td>
+          </tr>
+          <tr>
+            <td>Conectividad</td>
+            <td>Android Auto / Apple CarPlay</td>
+          </tr>
+          <tr>
+            <td>Puertos de carga</td>
+            <td>CHAdeMO</td>
+          </tr>
         </table>
       </div>
 
       <div class="volver">
-        <button onclick="window.location.href='listar.html'" class="btn-volver">← Volver al catálogo</button>
+        <button id="btnVolver" class="btn-volver" data-url="{{ url_for('vehiculos.listar') }}">← Volver al
+          catálogo</button>
       </div>
     </section>
   </main>
-    <script src="{{ url_for('static', filename='js/Global.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/Global.js') }}"></script>
 </body>
+
 </html>
