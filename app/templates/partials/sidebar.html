@@ -1,0 +1,15 @@
+<aside class="sidebar">
+    <div class="logo">
+        <img src="{{ url_for('static', filename='img/Logo.png.jpg') }}" alt="Kinetica Logo">
+        <h2>Kinetica</h2>
+    </div>
+    <nav>
+        <ul>
+            <li><i class="icon">📰</i><a href="{{ url_for('noticias.crear') }}">Noticias</a></li>
+            <li class="icon"><i class="icon">⚡</i><a href="{{ url_for('vehiculos.listar') }}">Vehículos</a></li>
+            <li><i class="icon">🧮</i><a href="{{ url_for('calculadora.index') }}">Calculadora</a></li>
+            <li><i class="icon">🗺️</i><a href="{{ url_for('mapa.index') }}">Mapa</a></li>
+            <li><i class="icon">👤</i><a href="{{ url_for('usuarios.cuenta') }}">Cuenta</a></li>
+        </ul>
+    </nav>
+</aside>

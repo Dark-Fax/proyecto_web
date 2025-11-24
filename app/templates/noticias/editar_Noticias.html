@@ -13,24 +13,8 @@
 </head>
 
 <body>
-
-    <!-- Barra lateral -->
-    <aside class="sidebar">
-        <div class="logo">
-            <img src="{{ url_for('static', filename='img/Logo.png.jpg') }}" alt="Kinetica Logo">
-            <h2>Kinetica</h2>
-        </div>
-        <nav>
-            <ul id="menu">
-                <li class="active"><i class="icon">📰</i><a href="#">Noticias</a></li>
-                <li><i class="icon">🚗</i><a href="{{ url_for('vehiculos.listar') }}">Vehículos</a></li>
-                <li><i class="icon">🧮</i><a href="#">Calculadora</a></li>
-                <li><i class="icon">🗺️</i><a href="#">Mapa</a></li>
-                <li><i class="icon">👤</i><a href="#">Cuenta</a></li>
-            </ul>
-        </nav>
-    </aside>
-
+    
+{% include 'partials/sidebar.html' %}
     <!-- Contenedor principal -->
     <main class="content">
 

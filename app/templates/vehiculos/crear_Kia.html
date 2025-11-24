@@ -11,23 +11,7 @@
 
 <body>
 
-  <!-- === SIDEBAR === -->
-  <aside class="sidebar">
-    <div class="logo">
-      <img src="{{ url_for('static', filename='img/Logo.png.jpg') }}" alt="Kinetica Logo">
-      <h2>Kinetica</h2>
-    </div>
-    <nav>
-      <ul>
-        <li><i class="icon">📰</i><a href="{{ url_for('main.dashboard') }}">Noticias</a></li>
-        <li class="active"><i class="icon">⚡</i><a href="{{ url_for('vehiculos.listar') }}">Vehículos eléctricos</a>
-        </li>
-        <li><i class="icon">🧮</i><a href="#">Calculadora</a></li>
-        <li><i class="icon">🗺️</i><a href="#">Mapa</a></li>
-        <li><i class="icon">👤</i><a href="#">Cuenta</a></li>
-      </ul>
-    </nav>
-  </aside>
+  {% include 'partials/sidebar.html' %}
 
   <!-- === CONTENIDO PRINCIPAL === -->
   <main class="content">

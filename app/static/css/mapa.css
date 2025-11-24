@@ -1,0 +1,57 @@
+/* ================================
+Mapa – Estilos generales
+================================ */
+
+.map-container {
+    background: #ffffff;
+    border-radius: 14px;
+    margin-top: 25px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+}
+
+/* -------------------------------
+Encabezado del contenedor
+------------------------------- */
+.map-header {
+    background: linear-gradient(90deg, #2563eb, #1e40af);
+    color: #fff;
+    padding: 14px 20px;
+    font-size: 19px;
+    font-weight: 600;
+    border-bottom: 2px solid #1e3a8a;
+    letter-spacing: 0.3px;
+}
+
+/* -------------------------------
+Mapa de Leaflet
+------------------------------- */
+#map {
+    height: 600px;
+    width: 100%;
+}
+
+/* -------------------------------
+Popup (estaciones)
+------------------------------- */
+.leaflet-popup-content {
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.leaflet-popup-content strong {
+    font-size: 15px;
+    color: #1d4ed8;
+}
+
+/* -------------------------------
+Animación suave en marcadores
+------------------------------- */
+.leaflet-marker-icon {
+    transition: transform 0.2s ease-in-out;
+}
+
+.leaflet-marker-icon:hover {
+    transform: scale(1.15);
+}

@@ -53,11 +53,13 @@ def create_app():
     from app.routes.vehiculos_routes import vehiculos
     from app.routes.noticias_routes import noticias
     from app.routes.calculadora_routes import calculadora
+    from app.routes.mapa_routes import mapa
     
     app.register_blueprint(main)     
     app.register_blueprint(usuarios)   
     app.register_blueprint(vehiculos)
     app.register_blueprint(noticias)
     app.register_blueprint(calculadora)
+    app.register_blueprint(mapa)
 
     return app                          

@@ -1,19 +1,17 @@
-<div class="header">
-    <h2>Bienvenido a <span>Kinetica</span></h2>
-
-    <div class="header-right">
+<header class="header" style="display: flex; justify-content: flex-end; align-items: center; width: 100%;">
+    
+    <div class="header-right" style="display: flex; align-items: center; gap: 20px;">
+        
         <div class="user-greeting">
-            <div class="avatar-circle">
-                {{ session.get('user_name', 'U')[0] }}
-            </div>
+            <div class="avatar-circle">👋</div>
             <div class="user-text">
-                <span class="welcome">Hola,</span>
-                <span class="username">{{ session.get('user_name', 'Usuario') }}</span>
+                <p class="welcome">Hola,</p>
+                <p class="username" id="nombreUsuario">{{ usuario_nombre }}</p>
             </div>
         </div>
 
-        <form action="{{ url_for('usuarios.logout') }}" method="POST">
-            <button class="logout-btn">Cerrar sesión</button>
-        </form>
+        <a href="{{ url_for('usuarios.logout') }}" class="logout-btn">Cerrar sesión</a>
+        
     </div>
-</div>
+
+</header>
