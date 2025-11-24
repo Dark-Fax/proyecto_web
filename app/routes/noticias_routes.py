@@ -7,19 +7,37 @@ def listar():
     if "usuario_nombre" not in session:
         flash("Debes iniciar sesión", "danger")
         return redirect(url_for("usuarios.login"))
-    return render_template("noticias/listar_Noticias.html")
+    
+    nombre_usuario = session["usuario_nombre"]
+    return render_template(
+        "noticias/listar_Noticias.html",
+        usuario_nombre=nombre_usuario,
+        titulo_pagina="Listado de Noticias 📰"
+    )
 
 @noticias.route("/crear")
 def crear():
     if "usuario_nombre" not in session:
         flash("Debes iniciar sesión", "danger")
         return redirect(url_for("usuarios.login"))
+    
     nombre_usuario = session["usuario_nombre"]
-    return render_template("noticias/crear_Noticias.html", usuario_nombre=nombre_usuario)
+    return render_template(
+        "noticias/crear_Noticias.html",
+        usuario_nombre=nombre_usuario,
+        titulo_pagina="Crear Noticia ✏️"
+    )
 
 @noticias.route("/editar/<int:id>")
 def editar(id):
     if "usuario_nombre" not in session:
         flash("Debes iniciar sesión", "danger")
         return redirect(url_for("usuarios.login"))
-    return render_template("noticias/editar_Noticias.html", id=id)
+    
+    nombre_usuario = session["usuario_nombre"]
+    return render_template(
+        "noticias/editar_Noticias.html",
+        id=id,
+        usuario_nombre=nombre_usuario,
+        titulo_pagina="Editar Noticia ✏️"
+    )

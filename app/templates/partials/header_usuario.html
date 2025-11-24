@@ -1,7 +1,8 @@
-<header class="header" style="display: flex; justify-content: flex-end; align-items: center; width: 100%;">
-    
-    <div class="header-right" style="display: flex; align-items: center; gap: 20px;">
-        
+<header class="header">
+    <div class="header-left">
+        <h2>{{ titulo_pagina }}</h2>
+    </div>
+    <div class="header-right">
         <div class="user-greeting">
             <div class="avatar-circle">👋</div>
             <div class="user-text">
@@ -9,9 +10,6 @@
                 <p class="username" id="nombreUsuario">{{ usuario_nombre }}</p>
             </div>
         </div>
-
         <a href="{{ url_for('usuarios.logout') }}" class="logout-btn">Cerrar sesión</a>
-        
     </div>
-
 </header>

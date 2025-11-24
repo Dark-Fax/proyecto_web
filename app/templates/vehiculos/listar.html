@@ -15,19 +15,8 @@
 
   <!-- Contenido principal -->
   <main class="content">
-    <header class="header">
-      <h2>Catálogo de vehículos eléctricos ⚡</h2>
-      <div class="header-right">
-        <div class="user-greeting">
-          <div class="avatar-circle">👋</div>
-          <div class="user-text">
-            <p class="welcome">Hola,</p>
-            <p class="username" id="nombreUsuario">{{ usuario_nombre }}</p>
-          </div>
-        </div>
-        <a class="logout-btn" href="{{ url_for('usuarios.logout') }}">Cerrar sesión</a>
-      </div>
-    </header>
+    
+    {% include 'partials/header_usuario.html' %}
 
     <!-- Sección principal -->
     <section class="main-section">

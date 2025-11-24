@@ -13,16 +13,15 @@
 </head>
 
 <body>
+
+    <!-- Barra lateral -->
     
-{% include 'partials/sidebar.html' %}
+    {% include 'partials/sidebar.html' %}
+    
     <!-- Contenedor principal -->
     <main class="content">
 
-        <!-- Encabezado -->
-        <header class="header">
-            <h2>Editar Noticia ✏️</h2>
-            <a href="{{ url_for('noticias.listar') }}" class="logout-btn">← Volver</a>
-        </header>
+        {% include 'partials/header_usuario.html' %}
 
         <!-- Sección de edición -->
         <section class="main-section">

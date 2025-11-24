@@ -106,20 +106,34 @@ body {
   margin-top: 5px;
 }
 
+/* === BOTÓN CERRAR SESIÓN === */
 .logout-btn {
+  /* 1. ESTO QUITA EL SUBRAYADO */
+  text-decoration: none; 
+  
+  /* 2. ESTO ASEGURA QUE EL BOTÓN RESPETE EL TAMAÑO Y LA ANIMACIÓN */
+  display: inline-flex; /* O inline-block */
+  align-items: center;
+  justify-content: center;
+
+  /* TU ESTILO VERDE */
   background: #45d84c;
-  color: white;
+  color: #fff;
   border: none;
   padding: 10px 18px;
   border-radius: 25px;
   cursor: pointer;
   font-weight: 600;
-  transition: 0.3s;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  font-family: 'Poppins', sans-serif; /* Asegura que use la misma fuente */
 }
 
 .logout-btn:hover {
-  background: #3ac043;
+  background: #3ac043; /* Un verde un poco más oscuro al pasar el mouse */
   transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  color: #fff; /* Asegura que el texto siga blanco */
 }
 
 

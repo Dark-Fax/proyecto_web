@@ -14,20 +14,9 @@
   {% include 'partials/sidebar.html' %}
 
   <main class="content">
-    <header class="header">
-      <h2>Chevrolet Bolt EV 2023 ⚡</h2>
-      <div class="header-right">
-        <div class="user-greeting">
-          <div class="avatar-circle">👋</div>
-          <div class="user-text">
-            <p class="welcome">Hola,</p>
-            <p class="username" id="nombreUsuario">{{ usuario_nombre }}</p>
-          </div>
-        </div>
-        <button id="logoutBtn" class="logout-btn" data-logout-url="{{ url_for('usuarios.logout') }}">Cerrar
-          sesión</button>
-      </div>
-    </header>
+    
+    {% include 'partials/header_usuario.html' %}
+
 
     <section class="detalle-section">
       <div class="detalle-container">

@@ -9,93 +9,19 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/Dashboard.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/Crear_Noticias.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/Editar_Noticias.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/listar_noticias.css') }}">
 
 
-
-    <style>
-        /* Estilos adicionales para CRUD */
-        .news-actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        .btn-edit,
-        .btn-delete {
-            padding: 6px 12px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
-            font-size: 0.9rem;
-        }
-
-        .btn-edit {
-            background: linear-gradient(120deg, #667eea, #764ba2);
-            color: white;
-        }
-
-        .btn-edit:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
-        }
-
-        .btn-delete {
-            background: linear-gradient(120deg, #f093fb, #f5576c);
-            color: white;
-        }
-
-        .btn-delete:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 12px rgba(245, 87, 108, 0.4);
-        }
-
-        .btn-create {
-            background: linear-gradient(120deg, #45d84c, #c4dc3d);
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
-            margin-bottom: 20px;
-        }
-
-        .btn-create:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(69, 216, 76, 0.4);
-        }
-    </style>
 </head>
 
 <body>
 
-    <!-- Barra lateral -->
-    <aside class="sidebar">
-        <div class="logo">
-            <img src="{{ url_for('static', filename='img/Logo.png.jpg') }}" alt="Kinetica Logo">
-            <h2>Kinetica</h2>
-        </div>
-        <nav>
-            <ul id="menu">
-                <li><i class="active">📰</i><a href="{{ url_for('noticias.crear') }}">Noticias</a></li>
-                <li class="icon"><i class="icon">⚡</i><a href="{{ url_for('vehiculos.listar') }}">Vehículos</a></li>
-                <li class="active"><i class="icon">🧮</i><a href="{{ url_for('calculadora.index') }}">Calculadora</a></li>
-                <li><i class="icon">🗺️</i><a href="{{ url_for('mapa.index') }}">Mapa</a></li>
-                <li><i class="icon">👤</i><a href="{{ url_for('usuarios.cuenta') }}">Cuenta</a></li>
-            </ul>
-        </nav>
-    </aside>
+    {% include 'partials/sidebar.html' %}
 
     <!-- Contenedor principal -->
     <main class="content">
 
-        <!-- Encabezado -->
-        <header class="header">
-            <h2>Gestión de Noticias 📰</h2>
-            <a href="{{ url_for('noticias.crear') }}" class="logout-btn">← Volver</a>
-        </header>
+        {% include 'partials/header_usuario.html' %}
 
         <!-- Sección principal -->
         <section class="main-section">
@@ -105,7 +31,7 @@
                 style="display: inline-block; text-align: center;">
                 ➕ Ver ultimas Noticias
             </a>
-            
+
             <!-- Lista de noticias -->
             <div class="news-list" id="newsList">
 

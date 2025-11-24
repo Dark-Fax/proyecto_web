@@ -54,6 +54,7 @@ def create_app():
     from app.routes.noticias_routes import noticias
     from app.routes.calculadora_routes import calculadora
     from app.routes.mapa_routes import mapa
+    from app.routes.cuenta_routes import cuenta
     
     app.register_blueprint(main)     
     app.register_blueprint(usuarios)   
@@ -61,5 +62,6 @@ def create_app():
     app.register_blueprint(noticias)
     app.register_blueprint(calculadora)
     app.register_blueprint(mapa)
-
+    app.register_blueprint(cuenta)
+    
     return app                          

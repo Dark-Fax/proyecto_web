@@ -41,4 +41,4 @@ def index():
         print("ERROR AL DECODIFICAR JSON:", e)
         estaciones = []
 
-    return render_template("mapa/mapa.html", estaciones=estaciones)
+    return render_template("mapa/mapa.html", estaciones=estaciones, titulo_pagina="Mapa de Estaciones")

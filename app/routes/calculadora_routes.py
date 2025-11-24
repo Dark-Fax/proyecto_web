@@ -11,7 +11,7 @@ def index():
         flash("Debes iniciar sesión", "warning")
         return redirect(url_for("usuarios.login"))
 
-    return render_template("calculadora/calculadora.html")
+    return render_template("calculadora/calculadora.html", titulo_pagina="Calculadora 🧮")
 
 
 
@@ -84,7 +84,7 @@ def calcular():
             "precio_kwh": precio_kWh
         }
 
-        return render_template("calculadora/calculadora.html", resultados=resultados)
+        return render_template("calculadora/calculadora.html", resultados=resultados, titulo_pagina="Calculadora 🧮")
 
     except Exception as e:
         flash(f"Error al procesar los datos: {str(e)}", "danger")
