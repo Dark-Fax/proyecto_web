@@ -1,0 +1,155 @@
+/* ============================
+   ESTILOS PARA LA CALCULADORA
+   ============================ */
+
+/* CONTENEDOR PRINCIPAL */
+.calc-container {
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 20px;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* TÍTULO PRINCIPAL */
+.calc-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #222;
+}
+
+/* SUBTÍTULOS */
+.calc-subtitle {
+    font-size: 1.2rem;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* NOTAS */
+.calc-note {
+    background: #f1f9ec;
+    border-left: 4px solid #45d84c;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #2a2a2a;
+}
+
+/* FORMULARIO */
+.calc-box {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* LABELS */
+.calc-box label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+}
+
+/* INPUTS */
+.calc-box input,
+.calc-box select {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+}
+
+.calc-box input:focus,
+.calc-box select:focus {
+    border-color: #45d84c;
+    box-shadow: 0 0 5px rgba(69, 216, 76, 0.4);
+    outline: none;
+}
+
+/* BOTÓN CALCULAR */
+.calc-btn {
+    margin-top: 10px;
+    background: linear-gradient(135deg, #45d84c, #8ed63d);
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s all ease;
+}
+
+.calc-btn:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #38b63a, #79c830);
+    box-shadow: 0 5px 12px rgba(0,0,0,0.15);
+}
+
+/* ============================
+   RESULTADOS
+   ============================ */
+
+.calc-results {
+    margin-top: 30px;
+    background-color: #ffffff;
+    border-radius: 14px;
+    padding: 25px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.calc-results h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.result-item {
+    background: #f5f5f5;
+    padding: 12px 14px;
+    border-left: 4px solid #45d84c;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    font-size: 1rem;
+}
+
+/* Último sin margen */
+.result-item:last-child {
+    margin-bottom: 0;
+}
+
+/* ============================
+   ANIMACIONES
+   ============================ */
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================
+   RESPONSIVE
+   ============================ */
+
+@media (max-width: 768px) {
+    .calc-container {
+        padding: 10px;
+    }
+
+    .calc-box {
+        padding: 20px;
+    }
+
+    .calc-btn {
+        font-size: 0.95rem;
+    }
+}

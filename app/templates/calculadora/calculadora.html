@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Kinetica — Calculadora</title>
+
+    <link rel="icon" href="{{ url_for('static', filename='img/Logo.png.jpg') }}" type="image/x-icon">
+
+    <!-- CSS GLOBAL -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/calculadora.css') }}">
+</head>
+
+<body>
+
+    <!-- === SIDEBAR COMPLETA === -->
+    <aside class="sidebar">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='img/Logo.png.jpg') }}" alt="Kinetica Logo">
+            <h2>Kinetica</h2>
+        </div>
+        <nav>
+            <ul>
+                <li><i class="active">📰</i><a href="{{ url_for('noticias.crear') }}">Noticias</a></li>
+                <li class="icon"><i class="icon">⚡</i><a href="{{ url_for('vehiculos.listar') }}">Vehículos</a></li>
+                <li class="active"><i class="icon">🧮</i><a href="{{ url_for('calculadora.index') }}">Calculadora</a></li>
+                <li><i class="icon">🗺️</i><a href="#">Mapa</a></li>
+                <li><i class="icon">👤</i><a href="{{ url_for('usuarios.cuenta') }}">Cuenta</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+
+    <!-- === CONTENIDO PRINCIPAL === -->
+    <main class="content">
+
+        {% include 'partials/header_usuario.html' %}
+
+        <div class="calc-container">
+
+            <h2 class="calc-title">🧮 Calculadora de Recarga y Costos</h2>
+
+            <form action="{{ url_for('calculadora.calcular') }}" method="POST" class="calc-box">
+
+                <!-- INPUTS PRINCIPALES -->
+                <label>Autonomía (km):</label>
+                <input type="number" name="autonomia" step="any">
+
+                <label>Capacidad de la batería (kWh):</label>
+                <input type="number" name="bateria_kwh" step="any">
+
+                <label>Distancia a recorrer (km):</label>
+                <input type="number" name="distancia" step="any">
+
+                <label>Precio por kWh (COP):</label>
+                <input type="number" name="precio_kwh" step="any">
+
+
+                <!-- OPCIONALES: TASA DE CARGA -->
+                <h3 class="calc-subtitle">Opcional — Datos de tasa de carga</h3>
+                <p class="calc-note">
+                    Si no ingresas estos campos, la calculadora usará una tasa estándar de <b>160 km / 30 min</b>.
+                </p>
+
+                <label>¿Cuántos km carga tu vehículo por sesión?</label>
+                <input type="number" name="km_carga" step="any" placeholder="Ej: 160">
+
+                <label>¿Cuántos minutos tarda en esa carga?</label>
+                <input type="number" name="min_carga" step="any" placeholder="Ej: 30">
+
+                <button type="submit" class="calc-btn">Calcular</button>
+
+            </form>
+
+
+            <!-- === RESULTADOS === -->
+            {% if resultados is defined %}
+            <div class="calc-results">
+
+                <h3>📊 Resultados del cálculo</h3>
+
+                <div class="result-item"><strong>Cargas equivalentes necesarias:</strong> {{ resultados.cargas_totales }}</div>
+
+                <div class="result-item"><strong>Recargas en ruta:</strong> {{ resultados.recargas_necesarias }}</div>
+
+                <div class="result-item"><strong>Energía total requerida:</strong> {{ resultados.energia_total }} kWh</div>
+
+                <div class="result-item"><strong>Tiempo estimado de recarga:</strong>
+                    {{ resultados.tiempo_minutos }} min (≈ {{ resultados.tiempo_horas }} h)
+                </div>
+
+                <div class="result-item"><strong>Costo total estimado:</strong>
+                    ${{ "{:,.0f}".format(resultados.costo_total) }} COP
+                </div>
+
+            </div>
+            {% endif %}
+
+        </div>
+
+    </main>
+
+</body>
+</html>

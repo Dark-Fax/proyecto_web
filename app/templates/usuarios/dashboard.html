@@ -24,7 +24,7 @@
       <ul>
         <li><i class="active">📰</i><a href="{{ url_for('noticias.crear') }}">Noticias</a></li>
         <li class="icon"><i class="icon">⚡</i><a href="{{ url_for('vehiculos.listar') }}">Vehículos</a></li>
-        <li><i class="icon">🧮</i><a href="#">Calculadora</a></li>
+        <li><i class="icon">🧮</i><a href="{{ url_for('calculadora.index') }}">Calculadora</a></li>
         <li><i class="icon">🗺️</i><a href="#">Mapa</a></li>
         <li><i class="icon">👤</i><a href="{{ url_for('usuarios.cuenta') }}">Cuenta</a></li>
       </ul>
@@ -38,12 +38,7 @@
 
     <!-- Sección principal -->
 
-    <!-- Otras secciones (ocultas) -->
-    <section id="calculadora" class="main-section" style="display:none;">
-      <h2>Calculadora de consumo</h2>
-      <p>Calcula la eficiencia de tu vehículo.</p>
-    </section>
-
+    
     <section id="mapa" class="main-section" style="display:none;">
       <h2>Mapa de estaciones</h2>
       <p>Encuentra los puntos de carga más cercanos.</p>

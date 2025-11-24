@@ -52,10 +52,12 @@ def create_app():
     from app.routes.usuarios_routes import usuarios
     from app.routes.vehiculos_routes import vehiculos
     from app.routes.noticias_routes import noticias
+    from app.routes.calculadora_routes import calculadora
     
     app.register_blueprint(main)     
     app.register_blueprint(usuarios)   
     app.register_blueprint(vehiculos)
     app.register_blueprint(noticias)
+    app.register_blueprint(calculadora)
 
     return app                          
