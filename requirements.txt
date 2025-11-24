@@ -3,3 +3,5 @@ Flask-SQLAlchemy
 Flask-Migrate
 python-dotenv
 pyodbc
+requests
+gunicorn #es el servidor web profesional para producción

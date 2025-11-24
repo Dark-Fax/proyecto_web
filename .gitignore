@@ -4,3 +4,4 @@ __pycache__/
 .env
 migrations/
 *.sqlite3
+test_db.py

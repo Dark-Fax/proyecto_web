@@ -1,19 +1,41 @@
 /* ================================
-Mapa – Estilos generales
-================================ */
+   Mapa – Estilos generales
+   ================================ */
 
 .map-container {
     background: #ffffff;
     border-radius: 14px;
     margin-top: 25px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-    overflow: hidden;
     border: 1px solid #e5e7eb;
+    
+    /* --- NUEVOS CAMBIOS PARA EL SCROLL --- */
+    max-height: 80vh;  /* Ocupa máximo el 80% de la altura de la pantalla */
+    overflow-y: auto;  /* Habilita el deslizar arriba/abajo si es necesario */
+    display: flex;
+    flex-direction: column;
 }
 
+/* (Opcional) Estilo para que la barra de scroll se vea bonita y moderna */
+.map-container::-webkit-scrollbar {
+    width: 8px;
+}
+.map-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+.map-container::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+.map-container::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
+}
+
+
 /* -------------------------------
-Encabezado del contenedor
-------------------------------- */
+   Encabezado del contenedor
+   ------------------------------- */
 .map-header {
     background: linear-gradient(90deg, #2563eb, #1e40af);
     color: #fff;
@@ -22,22 +44,30 @@ Encabezado del contenedor
     font-weight: 600;
     border-bottom: 2px solid #1e3a8a;
     letter-spacing: 0.3px;
+    
+    /* Para que el encabezado se quede fijo al deslizar (Opcional) */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 /* -------------------------------
-Mapa de Leaflet
-------------------------------- */
+   Mapa de Leaflet
+   ------------------------------- */
 #map {
-    height: 600px;
+    /* --- CAMBIO: MAPA MÁS PEQUEÑO --- */
+    height: 400px; /* Antes era 600px */
     width: 100%;
+    min-height: 400px; /* Asegura que no se aplaste */
 }
 
 /* -------------------------------
-Popup (estaciones)
-------------------------------- */
+   Popup (estaciones)
+   ------------------------------- */
 .leaflet-popup-content {
     font-size: 14px;
     line-height: 1.4;
+    font-family: 'Poppins', sans-serif; /* Asegura que use tu fuente */
 }
 
 .leaflet-popup-content strong {
@@ -46,8 +76,8 @@ Popup (estaciones)
 }
 
 /* -------------------------------
-Animación suave en marcadores
-------------------------------- */
+   Animación suave en marcadores
+   ------------------------------- */
 .leaflet-marker-icon {
     transition: transform 0.2s ease-in-out;
 }

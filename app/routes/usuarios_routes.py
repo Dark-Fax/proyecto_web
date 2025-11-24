@@ -29,11 +29,10 @@ def registro():
             flash("Este correo ya está registrado 📧", "danger")
             return redirect(url_for("usuarios.registro"))
 
-        nuevo_usuario = Usuario(
-            nombre=nombre,
-            email=correo,
-            telefono=telefono,
-        )
+        nuevo_usuario = Usuario()
+        nuevo_usuario.nombre = nombre
+        nuevo_usuario.email = correo
+        nuevo_usuario.telefono = telefono
         nuevo_usuario.set_password(contrasena)
 
         db.session.add(nuevo_usuario)
