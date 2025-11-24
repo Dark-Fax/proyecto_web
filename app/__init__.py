@@ -46,6 +46,17 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = f"mssql+pyodbc:///?odbc_connect={params}"
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False 
 
+
+
+    # === Configuración para subir imágenes ===
+    UPLOAD_FOLDER = os.path.join(app.root_path, 'static', 'img', 'noticias')
+    os.makedirs(UPLOAD_FOLDER, exist_ok=True)  # crea la carpeta si no existe
+    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+    app.config['ALLOWED_EXTENSIONS'] = {'png', 'jpg', 'jpeg', 'gif'}
+
+
+    #Inicializamos SQLAlchemy con Flask
+
     db.init_app(app)
     migrate.init_app(app, db)
 
@@ -62,8 +73,12 @@ def create_app():
     app.register_blueprint(usuarios)   
     app.register_blueprint(vehiculos)
     app.register_blueprint(noticias)
+    print("Blueprint noticias cargado")
     app.register_blueprint(calculadora)
     app.register_blueprint(cuenta)
     app.register_blueprint(mapa)         # <--- 2. AGREGAR ESTO (Registrar)
 
     return app
+
+
+

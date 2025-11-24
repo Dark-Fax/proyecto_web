@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kinetica - Crear Noticia</title>
+    <link rel="icon" href="{{ url_for('static', filename='img/Logo.png.jpg') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Crear_Noticias.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Editar_Noticias.css') }}" />
+</head>
+
+<body>
+
+    {% include 'partials/sidebar.html' %}
+
+    <main class="content">
+        {% include 'partials/header_usuario.html' %}
+
+        <section class="main-section">
+
+            <form action="{{ url_for('noticias.crear_formulario') }}" method="POST" enctype="multipart/form-data" class="edit-form">
+
+                <div class="form-section">
+                    <label for="titulo">📝 Título de la Noticia</label>
+                    <input type="text" id="titulo" name="titulo" placeholder="Ej: Carros Eléctricos vs Tradicionales" required>
+                </div>
+
+                <div class="form-section">
+                    <label for="categoria">🏷 Categoría</label>
+                    <select id="categoria" name="categoria" required>
+                        <option value="">Selecciona una categoría</option>
+                        <option value="tecnologia">Tecnología</option>
+                        <option value="medio-ambiente">Medio Ambiente</option>
+                        <option value="finanzas">Finanzas</option>
+                        <option value="mantenimiento">Mantenimiento</option>
+                        <option value="guia">Guía</option>
+                        <option value="actualidad">Actualidad</option>
+                    </select>
+                </div>
+
+                <div class="form-section">
+                    <label for="autor">✍ Autor</label>
+                    <input type="text" id="autor" name="autor" value="{{ session['usuario_nombre'] }}" required>
+                </div>
+
+                <div class="form-section">
+                    <label for="contenido">📄 Contenido de la Noticia</label>
+                    <textarea id="contenido" name="contenido" rows="15" placeholder="Escribe aquí el contenido..." required></textarea>
+                </div>
+
+                <div class="form-section">
+                    <label for="vistas">👁 Número de Vistas</label>
+                    <input type="number" id="vistas" name="vistas" value="0" min="0" required>
+                </div>
+
+                <div class="form-section">
+                    <label>🖼 Imagen Destacada (Opcional)</label>
+                    <div class="file-upload">
+                        <input type="file" id="imagen" name="imagen" accept="image/*">
+                        <label for="imagen" class="file-label">📎 Subir Imagen</label>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-save">💾 Crear Noticia</button>
+                    <a href="{{ url_for('noticias.listar') }}" class="btn-cancel">❌ Cancelar</a>
+                </div>
+
+            </form>
+
+            <!-- Vista previa -->
+            <div class="preview-section">
+                <h3>👁 Vista Previa</h3>
+                <div class="preview-card">
+                    <h4 id="preview-titulo">Título de la noticia</h4>
+                    <p class="preview-meta"><span id="preview-categoria">Categoría</span> • <span
+                            id="preview-autor">{{ session['usuario_nombre'] }}</span> • <span id="preview-vistas">0</span> vistas</p>
+                    <p class="preview-content">Aquí se verá una vista previa del contenido...</p>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <script>
+        // Actualizar vista previa en tiempo real
+        document.getElementById('titulo').addEventListener('input', function () {
+            document.getElementById('preview-titulo').textContent = this.value || 'Título de la noticia';
+        });
+
+        document.getElementById('categoria').addEventListener('change', function () {
+            const options = this.options;
+            const selectedOption = options[options.selectedIndex];
+            document.getElementById('preview-categoria').textContent = selectedOption.text || 'Categoría';
+        });
+
+        document.getElementById('autor').addEventListener('input', function () {
+            document.getElementById('preview-autor').textContent = this.value || 'Autor';
+        });
+
+        document.getElementById('vistas').addEventListener('input', function () {
+            document.getElementById('preview-vistas').textContent = this.value || '0';
+        });
+
+        document.getElementById('contenido').addEventListener('input', function () {
+            const preview = document.querySelector('.preview-content');
+            preview.textContent = this.value.substring(0, 150) + '...';
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ noticia.titulo }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Dashboard.css') }}">
+</head>
+<body>
+    {% include 'partials/sidebar.html' %}
+    <main class="content">
+        {% include 'partials/header_usuario.html' %}
+        <section class="main-section">
+            <h1>{{ noticia.titulo }}</h1>
+            <p><strong>Categoría:</strong> {{ noticia.categoria|capitalize }}</p>
+            <p><strong>Autor:</strong> {{ noticia.autor }}</p>
+            <p><strong>Vistas:</strong> {{ noticia.vistas }}</p>
+            <hr>
+            {% if noticia.imagen %}
+            <img src="{{ url_for('static', filename='img/noticias/' + noticia.imagen) }}" alt="Imagen noticia" style="max-width: 100%; height: auto;">
+            {% endif %}
+            <a href="{{ url_for('noticias.listar') }}">🔙 Volver al listado</a>
+        </section>
+    </main>
+</body>
+</html>

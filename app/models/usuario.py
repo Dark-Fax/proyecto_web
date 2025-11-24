@@ -19,6 +19,9 @@ class Usuario(db.Model): #Definimos una clase llamada 'Usuario',
     #telefono que sera un String de longitud 10 y que no puede ser null
     telefono = db.Column(db.String(10), nullable=False)
 
+    #Nuevo, rol de usuario (admin o usuario)    -----> nueva agregacion  
+    rol = db.Column(db.String(50), nullable=False, default="usuario")
+
     # ✅ Guardar la contraseña encriptada
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)

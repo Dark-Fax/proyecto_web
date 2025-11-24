@@ -6,7 +6,7 @@ main = Blueprint('main', __name__)
 def home():
     # Si el usuario ya inició sesión, lo mandamos directo a crear noticias
     if 'usuario_nombre' in session:
-        return redirect(url_for('noticias.crear'))
+        return redirect(url_for('noticias.crear_formulario'))
     return redirect(url_for('usuarios.login'))
 
 # Mantener /dashboard para otras secciones que no sean noticias

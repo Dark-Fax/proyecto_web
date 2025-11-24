@@ -4,22 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kinetica - Crear Noticia: Eléctricos vs Tradicionales</title>
+    <title>Kinetica - Inicio Noticias</title>
     <link rel="icon" href="{{ url_for('static', filename='img/Logo.png.jpg') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/Crear_Noticias.css') }}" />
-
 </head>
 
 <body>
 
     <!-- Barra lateral -->
-     
-   {% include 'partials/sidebar.html' %}
+    {% include 'partials/sidebar.html' %}
 
     <!-- Contenedor principal -->
     <main class="content">
         <header class="header">
-            <h2>Inicio - Noticias ✏️</h2>
+            <h2>Inicio - Noticias ✏</h2>
             <div class="header-right">
                 <div class="user-greeting">
                     <div class="avatar-circle">👋</div>
@@ -32,25 +30,25 @@
             </div>
         </header>
 
-
-        <div class="btn-group" style="margin-bottom: 20px;">
+        <!-- Botones principales justo después del header -->
+        <div class="btn-group" style="margin: 15px 0;">
             <a href="{{ url_for('noticias.listar') }}" class="btn-gestion-noticias">📰 Gestión de Noticias</a>
-            <a href="{{ url_for('noticias.editar', id=1) }}" class="btn-crear-editar">✏️ Crear/Editar Noticia</a>
+            <a href="{{ url_for('noticias.editar', id=1) }}" class="btn-crear-editar">✏ Crear/Editar Noticia</a>
         </div>
 
-        <!-- Sección de creación -->
+        <!-- Sección principal de la noticia -->
         <section class="main-section">
 
             <!-- Título de la noticia -->
-            <div class="form-card">
+            <div class="form-card fade-in">
                 <h1>🚗 Carros Eléctricos vs Tradicionales: ¿Cuál elegir?</h1>
                 <p class="subtitle">Explorando las ventajas y desventajas de cada tecnología</p>
             </div>
 
             <!-- Comparación principal -->
-            <div class="comparison-grid">
+            <div class="comparison-grid fade-in">
 
-                <!-- Sección de vehículos eléctricos -->
+                <!-- Vehículos eléctricos -->
                 <div class="comparison-card electric">
                     <div class="card-header">
                         <span class="icon-large">⚡</span>
@@ -70,7 +68,7 @@
                     </div>
                 </div>
 
-                <!-- Sección de vehículos tradicionales -->
+                <!-- Vehículos tradicionales -->
                 <div class="comparison-card traditional">
                     <div class="card-header">
                         <span class="icon-large">⛽</span>
@@ -93,7 +91,7 @@
             </div>
 
             <!-- Comparación detallada -->
-            <div class="detailed-comparison">
+            <div class="detailed-comparison fade-in">
                 <h2 class="section-title">📊 Comparación Detallada</h2>
 
                 <div class="comparison-row">
@@ -136,7 +134,7 @@
             </div>
 
             <!-- Conclusión -->
-            <div class="conclusion-card">
+            <div class="conclusion-card fade-in">
                 <h2>💡 Conclusión</h2>
                 <p>
                     Los vehículos eléctricos representan el futuro de la movilidad sostenible, ofreciendo
@@ -151,22 +149,13 @@
                 </p>
             </div>
 
-
-
-            <div class="action-buttons" style="margin-top: 15px;">
-                <a href="{{ url_for('noticias.listar') }}" class="btn-cancel"
-                    style="width: 100%; display: inline-block; text-align: center;">
-                    ← Volver a Gestion de Noticias
-                </a>
-            </div>
-
         </section>
     </main>
 
     <script>
-        // Efecto de animación al cargar
+        // Animación de entrada
         window.addEventListener('DOMContentLoaded', () => {
-            const cards = document.querySelectorAll('.comparison-card, .comparison-item, .conclusion-card');
+            const cards = document.querySelectorAll('.comparison-card, .comparison-item, .conclusion-card, .form-card');
             cards.forEach((card, index) => {
                 card.style.opacity = '0';
                 card.style.transform = 'translateY(20px)';
@@ -177,21 +166,6 @@
                 }, index * 100);
             });
         });
-
-        // Función para publicar noticia
-        function publicarNoticia() {
-            if (confirm('¿Deseas publicar esta noticia?')) {
-                alert('Noticia publicada exitosamente! Redirigiendo a la lista de noticias...');
-                setTimeout(() => {
-                    window.location.href = 'listar_Noticias.html';
-                }, 1000);
-            }
-        }
-
-        // Función para guardar borrador
-        function guardarBorrador() {
-            alert('Borrador guardado exitosamente!');
-        }
     </script>
 
 </body>

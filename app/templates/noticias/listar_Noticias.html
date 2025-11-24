@@ -10,113 +10,48 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/Crear_Noticias.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/Editar_Noticias.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/listar_noticias.css') }}">
-
-
 </head>
 
 <body>
 
     {% include 'partials/sidebar.html' %}
-
-    <!-- Contenedor principal -->
     <main class="content">
-
         {% include 'partials/header_usuario.html' %}
 
-        <!-- Sección principal -->
         <section class="main-section">
 
-            <!-- Botón para crear nueva noticia -->
-            <a href="{{ url_for('noticias.crear') }}" class="btn-create"
-                style="display: inline-block; text-align: center;">
-                ➕ Ver ultimas Noticias
+            <a href="{{ url_for('noticias.crear_formulario') }}" class="btn-create" style="display: inline-block; text-align: center;">
+                ➕ Crear Nueva Noticia
             </a>
 
-            <!-- Lista de noticias -->
             <div class="news-list" id="newsList">
 
-                <!-- Noticia 1 -->
-                <div class="news-card">
-                    <div class="news-info">
-                        <h3>🚗 Carros Eléctricos vs Tradicionales</h3>
-                        <p>Categoría: Tecnología • Autor: Admin • 250 vistas</p>
-                        <p>Comparación detallada entre vehículos eléctricos y tradicionales, analizando ventajas, costos
-                            y emisiones...</p>
-                    </div>
-                    <div class="news-actions">
-                        <a href="{{ url_for('noticias.editar', id=1) }}" class="btn-edit">✏️ Editar</a>
-                        <button class="btn-delete" onclick="eliminarNoticia(1)">🗑️ Eliminar</button>
-                    </div>
-                </div>
 
-                <!-- Noticia 2 -->
+                <!-- Noticias dinámicas desde la base de datos -->
+                {% for noticia in noticias %}
                 <div class="news-card">
                     <div class="news-info">
-                        <h3>🌱 Innovaciones en Movilidad Sostenible</h3>
-                        <p>Categoría: Medio Ambiente • Autor: Admin • 189 vistas</p>
-                        <p>Últimas tecnologías y avances en vehículos sostenibles para el futuro de la movilidad
-                            urbana...</p>
+                        <h3><a href="{{ url_for('noticias.ver', id=noticia.id) }}">{{ noticia.titulo }}</a></h3>
+                        <p>Categoría: {{ noticia.categoria }} • Autor: {{ noticia.autor }} • {{ noticia.vistas }} vistas</p>
+                        <p>{{ noticia.contenido[:120] }}...</p>
                     </div>
                     <div class="news-actions">
-                        <button class="btn-edit" onclick="window.location.href='editar.html?id=2'">✏️ Editar</button>
-                        <button class="btn-delete" onclick="eliminarNoticia(2)">🗑️ Eliminar</button>
+                        {% if session['rol'] == 'admin' %}
+                        <a href="{{ url_for('noticias.editar', id=noticia.id) }}" class="btn-edit">✏️ Editar</a>
+                        <form action="{{ url_for('noticias.eliminar', id=noticia.id) }}" method="post" style="display:inline;">
+                            <button type="submit" class="btn-delete">🗑️ Eliminar</button>
+                        </form>
+                        {% endif %}
                     </div>
                 </div>
-
-                <!-- Noticia 3 -->
-                <div class="news-card">
-                    <div class="news-info">
-                        <h3>⚡ Guía Completa: Carga de Vehículos Eléctricos</h3>
-                        <p>Categoría: Guía • Autor: Admin • 320 vistas</p>
-                        <p>Todo lo que necesitas saber sobre tipos de carga, estaciones disponibles y tiempos de
-                            carga...</p>
-                    </div>
-                    <div class="news-actions">
-                        <button class="btn-edit" onclick="window.location.href='editar.html?id=3'">✏️ Editar</button>
-                        <button class="btn-delete" onclick="eliminarNoticia(3)">🗑️ Eliminar</button>
-                    </div>
-                </div>
-
-                <!-- Noticia 4 -->
-                <div class="news-card">
-                    <div class="news-info">
-                        <h3>💰 Análisis de Costos: Eléctrico vs Combustible</h3>
-                        <p>Categoría: Finanzas • Autor: Admin • 445 vistas</p>
-                        <p>Comparación detallada de costos a largo plazo, incluyendo compra, mantenimiento y
-                            combustible...</p>
-                    </div>
-                    <div class="news-actions">
-                        <button class="btn-edit" onclick="window.location.href='editar.html?id=4'">✏️ Editar</button>
-                        <button class="btn-delete" onclick="eliminarNoticia(4)">🗑️ Eliminar</button>
-                    </div>
-                </div>
-
-                <!-- Noticia 5 -->
-                <div class="news-card">
-                    <div class="news-info">
-                        <h3>🔋 Baterías EV: Durabilidad y Cuidado</h3>
-                        <p>Categoría: Mantenimiento • Autor: Admin • 378 vistas</p>
-                        <p>Consejos prácticos para mantener tu batería eléctrica en óptimas condiciones...</p>
-                    </div>
-                    <div class="news-actions">
-                        <button class="btn-edit" onclick="window.location.href='editar.html?id=5'">✏️ Editar</button>
-                        <button class="btn-delete" onclick="eliminarNoticia(5)">🗑️ Eliminar</button>
-                    </div>
-                </div>
+                {% endfor %}
 
             </div>
+
         </section>
     </main>
 
     <script>
-        function eliminarNoticia(id) {
-            if (confirm(`¿Estás seguro de que deseas eliminar la noticia #${id}?`)) {
-                alert(`Noticia #${id} eliminada exitosamente (en producción, aquí se conectaría con el backend)`);
-                // Aquí iría la llamada AJAX para eliminar en el servidor
-                // fetch(`/api/noticias/${id}`, { method: 'DELETE' })
-            }
-        }
-
         // Animaciones de entrada
         window.addEventListener('DOMContentLoaded', () => {
             const cards = document.querySelectorAll('.news-card');
@@ -133,5 +68,4 @@
     </script>
 
 </body>
-
 </html>

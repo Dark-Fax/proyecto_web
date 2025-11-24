@@ -29,10 +29,9 @@ def registro():
             flash("Este correo ya está registrado 📧", "danger")
             return redirect(url_for("usuarios.registro"))
 
-        nuevo_usuario = Usuario()
-        nuevo_usuario.nombre = nombre
-        nuevo_usuario.email = correo
-        nuevo_usuario.telefono = telefono
+        nuevo_usuario = Usuario(
+            nombre=nombre, email=correo, telefono=telefono, rol="usuario"
+        )
         nuevo_usuario.set_password(contrasena)
 
         db.session.add(nuevo_usuario)
@@ -58,8 +57,11 @@ def login():
         if usuario and usuario.check_password(contrasena):
             session["usuario_id"] = usuario.id
             session["usuario_nombre"] = usuario.nombre
+            session["rol"] = usuario.rol
             flash(f"Bienvenido {usuario.nombre}!", "success")
-            return redirect(url_for("noticias.crear"))  # Redirige al Dashboard
+            return redirect(
+                url_for("noticias.inicio_noticias")
+            )  # Redirige al Dashboard
         else:
             flash("Correo o contraseña incorrectos", "danger")
             return redirect(url_for("usuarios.login"))
@@ -73,5 +75,3 @@ def logout():
     session.clear()
     flash("Sesión cerrada correctamente", "sucess")
     return redirect(url_for("usuarios.login"))
-
-

@@ -15,9 +15,9 @@
 <body>
 
     <!-- Barra lateral -->
-    
+
     {% include 'partials/sidebar.html' %}
-    
+
     <!-- Contenedor principal -->
     <main class="content">
 
@@ -27,62 +27,60 @@
         <section class="main-section">
 
             <!-- Formulario de edición -->
-            <form id="formEditar" class="edit-form">
+            <form id="formEditar" class="edit-form" action="{{ url_for('noticias.editar', id=noticia.id) }}"
+                method="POST" enctype="multipart/form-data">
 
                 <!-- Campos principales -->
                 <div class="form-section">
                     <label for="titulo">📝 Título de la Noticia</label>
                     <input type="text" id="titulo" name="titulo" placeholder="Ej: Carros Eléctricos vs Tradicionales"
-                        value="Carros Eléctricos vs Tradicionales" required>
+                        value="{{ noticia.titulo }}" required>
                 </div>
 
                 <div class="form-section">
                     <label for="categoria">🏷️ Categoría</label>
                     <select id="categoria" name="categoria" required>
                         <option value="">Selecciona una categoría</option>
-                        <option value="tecnologia" selected>Tecnología</option>
-                        <option value="medio-ambiente">Medio Ambiente</option>
-                        <option value="finanzas">Finanzas</option>
-                        <option value="mantenimiento">Mantenimiento</option>
-                        <option value="guia">Guía</option>
-                        <option value="actualidad">Actualidad</option>
+                        <option value="tecnologia" {% if noticia.categoria=='tecnologia' %}selected{% endif %}>
+                            Tecnología</option>
+                        <option value="medio-ambiente" {% if noticia.categoria=='medio-ambiente' %}selected{% endif %}>
+                            Medio Ambiente</option>
+                        <option value="finanzas" {% if noticia.categoria=='finanzas' %}selected{% endif %}>Finanzas
+                        </option>
+                        <option value="mantenimiento" {% if noticia.categoria=='mantenimiento' %}selected{% endif %}>
+                            Mantenimiento</option>
+                        <option value="guia" {% if noticia.categoria=='guia' %}selected{% endif %}>Guía</option>
+                        <option value="actualidad" {% if noticia.categoria=='actualidad' %}selected{% endif %}>
+                            Actualidad</option>
                     </select>
                 </div>
 
                 <div class="form-section">
                     <label for="autor">✍️ Autor</label>
-                    <input type="text" id="autor" name="autor" placeholder="Nombre del autor" value="Admin" required>
+                    <input type="text" id="autor" name="autor" placeholder="Nombre del autor"
+                        value="{{ noticia.autor }}" required>
                 </div>
 
                 <div class="form-section">
                     <label for="contenido">📄 Contenido de la Noticia</label>
                     <textarea id="contenido" name="contenido" rows="15"
                         placeholder="Escribe aquí el contenido completo de la noticia..."
-                        required>Los vehículos eléctricos representan el futuro de la movilidad sostenible, ofreciendo beneficios ambientales significativos y costos operativos más bajos a largo plazo. Sin embargo, los vehículos tradicionales siguen siendo una opción viable gracias a su infraestructura establecida y autonomía extendida.
-
-VENTAJAS DE CARROS ELÉCTRICOS:
-✅ Cero emisiones directas de CO₂
-✅ Bajo costo de mantenimiento
-✅ Ahorro energético significativo
-✅ Conducción silenciosa
-
-VENTAJAS DE CARROS TRADICIONALES:
-✅ Mayor autonomía sin recarga
-✅ Infraestructura extendida
-✅ Precio inicial más accesible
-✅ Repostaje rápido
-
-CONCLUSIÓN:
-La elección final depende de tus necesidades: Si buscas ahorrar a largo plazo y cuidar el planeta, ve eléctrico. Si necesitas mayor autonomía y viajes largos frecuentes, un vehículo tradicional sigue siendo una excelente opción.</textarea>
+                        required>{{ noticia.contenido }}</textarea>
                 </div>
 
                 <div class="form-section">
                     <label for="vistas">👁️ Número de Vistas</label>
-                    <input type="number" id="vistas" name="vistas" placeholder="Ej: 250" value="250" min="0" required>
+                    <input type="number" id="vistas" name="vistas" placeholder="Ej: 250" value="{{ noticia.vistas }}"
+                        min="0" required>
                 </div>
 
                 <div class="form-section">
                     <label>🖼️ Imagen Destacada (Opcional)</label>
+                    {% if noticia.imagen %}
+                    <p>Imagen actual:</p>
+                    <img src="{{ url_for('static', filename='img/noticias/' + noticia.imagen) }}" alt="Imagen noticia"
+                        style="max-width:200px;">
+                    {% endif %}
                     <div class="file-upload">
                         <input type="file" id="imagen" name="imagen" accept="image/*">
                         <label for="imagen" class="file-label">📎 Subir Imagen</label>
@@ -92,7 +90,8 @@ La elección final depende de tus necesidades: Si buscas ahorrar a largo plazo y
                 <!-- Botones de acción -->
                 <div class="form-actions">
                     <button type="submit" class="btn-save">💾 Guardar Cambios</button>
-                    <a href="{{ url_for('noticias.listar') }}" class="btn-cancel" style="text-align: center;">❌ Cancelar</a>
+                    <a href="{{ url_for('noticias.listar') }}" class="btn-cancel" style="text-align: center;">❌
+                        Cancelar</a>
                     <button type="button" class="btn-delete-form" onclick="eliminarNoticia()">🗑️ Eliminar
                         Noticia</button>
                 </div>
@@ -139,12 +138,6 @@ La elección final depende de tus necesidades: Si buscas ahorrar a largo plazo y
             preview.textContent = this.value.substring(0, 150) + '...';
         });
 
-        // Manejo del formulario
-        document.getElementById('formEditar').addEventListener('submit', function (e) {
-            e.preventDefault();
-            alert('Noticia actualizada exitosamente (en producción, aquí se enviaría al backend)');
-            window.location.href = 'crear.html';
-        });
 
         function eliminarNoticia() {
             if (confirm('¿Estás seguro de que deseas eliminar esta noticia? Esta acción no se puede deshacer.')) {
